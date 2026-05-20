@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+    color-scheme: light;
+    font-family: "Outfit", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(197, 89, 58, 0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(22, 22, 22, 0.05), transparent 24%),
+        linear-gradient(180deg, #faf6ee 0%, #f4efe6 48%, #fbfaf7 100%);
+    color: #111827;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(197, 89, 58, 0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(22, 22, 22, 0.05), transparent 24%),
+        linear-gradient(180deg, #faf6ee 0%, #f4efe6 48%, #fbfaf7 100%);
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+::selection {
+    background: rgba(197, 89, 58, 0.14);
+    color: #111827;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+.font-display {
+    font-family: "Sora", sans-serif;
+    letter-spacing: -0.04em;
+}
+
+.luxury-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(181, 79, 50, 0.38) transparent;
+}
+
+.luxury-modal-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.luxury-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.luxury-modal-scroll::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(181, 79, 50, 0.55), rgba(143, 60, 40, 0.82));
+    background-clip: padding-box;
+}
+
+.luxury-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(181, 79, 50, 0.72), rgba(143, 60, 40, 0.92));
+    background-clip: padding-box;
+}
