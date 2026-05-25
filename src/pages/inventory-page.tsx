@@ -7,6 +7,7 @@ import { ListingDetailsModal } from "../components/listings/listing-details-moda
 import { PageHero } from "../components/ui/page-hero";
 import { SearchIcon } from "../components/ui/site-icon";
 import { useSiteData } from "../modules/site-data/site-data.context";
+import { formatListingPrice, getListingStatusLabel } from "../modules/site-data/listing-helpers";
 import type { Listing, ListingCategory, ListingStatus } from "../modules/site-data/site-data.types";
 
 export function InventoryPage() {
@@ -44,7 +45,7 @@ export function InventoryPage() {
         }
 
         return statusItems.filter((listing) =>
-            [listing.name, listing.location, listing.summary, listing.category, listing.price]
+            [listing.title, listing.location, listing.shortDescription, listing.category, formatListingPrice(listing), getListingStatusLabel(listing.status)]
                 .join(" ")
                 .toLowerCase()
                 .includes(normalizedSearch)
@@ -140,7 +141,7 @@ export function InventoryPage() {
                                     );
                                 })}
                                 <div className="flex gap-2 sm:hidden">
-                                    {(["all", "Available", "Coming Soon", "Sold"] as const).map((status) => {
+                                    {(["all", "available", "coming_soon", "sold"] as const).map((status) => {
                                         const active = selectedStatus === status;
 
                                         return (
@@ -155,7 +156,7 @@ export function InventoryPage() {
                                                         : "border border-stone-300 bg-white text-slate-700 hover:bg-stone-50"
                                                 ].join(" ")}
                                             >
-                                                {status === "all" ? "All Status" : status}
+                                                {status === "all" ? "All Status" : getListingStatusLabel(status)}
                                             </button>
                                         );
                                     })}
@@ -169,9 +170,9 @@ export function InventoryPage() {
                                     className="h-11 min-w-36 rounded-full border border-stone-200 bg-[#fbfaf7] px-4 text-sm text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:bg-white focus:ring-4 focus:ring-[#b54f32]/8"
                                 >
                                     <option value="all">Status: All</option>
-                                    <option value="Available">Available</option>
-                                    <option value="Coming Soon">Coming Soon</option>
-                                    <option value="Sold">Sold</option>
+                                    <option value="available">Available</option>
+                                    <option value="coming_soon">Coming Soon</option>
+                                    <option value="sold">Sold</option>
                                 </select>
 
                                 <div className="shrink-0 rounded-full border border-stone-200 bg-[#fbfaf7] px-4 py-2.5 text-sm text-slate-600">

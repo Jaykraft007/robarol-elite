@@ -1,7 +1,10 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 
+import { AdminLayout } from "../components/admin/admin-layout";
 import { SiteLayout } from "../components/layout/site-layout";
 import { SiteDataProvider } from "../modules/site-data/site-data.context";
+import { AdminListingFormPage } from "../pages/admin-listing-form-page";
+import { AdminListingsPage } from "../pages/admin-listings-page";
 import { AboutPage } from "../pages/about-page";
 import { ContactPage } from "../pages/contact-page";
 import { FinancePage } from "../pages/finance-page";
@@ -18,6 +21,14 @@ function AppRoot() {
     );
 }
 
+function AdminRoot() {
+    return (
+        <SiteDataProvider>
+            <AdminLayout />
+        </SiteDataProvider>
+    );
+}
+
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -29,6 +40,16 @@ export const router = createBrowserRouter([
             { path: "finance", element: <FinancePage /> },
             { path: "about", element: <AboutPage /> },
             { path: "contact", element: <ContactPage /> }
+        ]
+    },
+    {
+        path: "/admin",
+        element: <AdminRoot />,
+        children: [
+            { index: true, element: <Navigate to="/admin/listings" replace /> },
+            { path: "listings", element: <AdminListingsPage /> },
+            { path: "listings/new", element: <AdminListingFormPage /> },
+            { path: "listings/:listingId/edit", element: <AdminListingFormPage /> }
         ]
     },
     {

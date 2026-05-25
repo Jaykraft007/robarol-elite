@@ -1,6 +1,10 @@
 export type ListingCategory = "automobiles" | "yachts" | "properties";
 
-export type ListingStatus = "Available" | "Sold" | "Coming Soon";
+export type ListingStatus = "available" | "coming_soon" | "sold" | "hidden";
+
+export type ListingCurrency = "USD" | "SGD" | "GBP" | "NGN";
+
+export type ListingInquiryLabel = "Send Inquiry" | "Register Interest" | "Similar Inquiry";
 
 export interface CompanyProfile {
     name: string;
@@ -17,25 +21,58 @@ export interface NavigationLink {
     to: string;
 }
 
-export interface ListingDetail {
-    label: string;
-    value: string;
+export interface ListingSpecs {
+    year?: string;
+    mileage?: string;
+    transmission?: string;
+    fuelType?: string;
+    condition?: string;
+    bodyType?: string;
+    length?: string;
+    engineHours?: string;
+    cabins?: string;
+    marina?: string;
+    bedrooms?: string;
+    bathrooms?: string;
+    interiorSize?: string;
+    parking?: string;
+    view?: string;
+    propertyType?: string;
 }
 
 export interface Listing {
     id: string;
-    name: string;
+    title: string;
     category: ListingCategory;
-    price: string;
-    image: string;
-    imagePosition?: string;
-    location: string;
     status: ListingStatus;
-    summary: string;
-    description: string;
-    details: ListingDetail[];
-    features: string[];
-    featured?: boolean;
+    price: number;
+    currency: ListingCurrency;
+    location: string;
+    shortDescription: string;
+    mainImage: string;
+    galleryImages: string[];
+    featured: boolean;
+    showOnWebsite: boolean;
+    inquiryLabel: ListingInquiryLabel;
+    specs: ListingSpecs;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface ListingDraft {
+    title: string;
+    category: ListingCategory;
+    status: ListingStatus;
+    price: number;
+    currency: ListingCurrency;
+    location: string;
+    shortDescription: string;
+    mainImage: string;
+    galleryImages: string[];
+    featured: boolean;
+    showOnWebsite: boolean;
+    inquiryLabel: ListingInquiryLabel;
+    specs: ListingSpecs;
 }
 
 export interface SiteDataSnapshot {

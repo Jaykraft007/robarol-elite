@@ -24,21 +24,21 @@ export function HomePage() {
             category: "automobiles" as const,
             label: "Automobiles",
             description: "Selected luxury cars and SUVs.",
-            image: "/assets/luxury-auto.png",
+            image: "/assets/catalog-mercedes-front.jpg",
             Icon: CarIcon
         },
         {
             category: "yachts" as const,
             label: "Yachts",
             description: "Private yachts and marine listings.",
-            image: "/assets/luxury-yacht.png",
+            image: "/assets/catalog-gtr-angle.jpg",
             Icon: YachtIcon
         },
         {
             category: "properties" as const,
             label: "Properties",
             description: "Premium homes and investment properties.",
-            image: "/assets/luxury-property.png",
+            image: "/assets/catalog-bmw-front.jpg",
             Icon: PropertyIcon
         }
     ];
@@ -102,8 +102,8 @@ export function HomePage() {
                     <figure className="overflow-hidden rounded-[1.45rem] border border-stone-200 bg-white p-3 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:rounded-[2rem] sm:p-4 sm:shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                         <div className="relative overflow-hidden rounded-[1.1rem] sm:rounded-[1.5rem]">
                             <img
-                                src="/assets/hero-marina.png"
-                                alt="Luxury car and yacht displayed by the marina"
+                                src="/assets/hero-convertible.jpg"
+                                alt="Premium convertible available through Robarol"
                                 className="h-full min-h-[13.25rem] w-full object-cover sm:min-h-[30rem] lg:min-h-[36rem]"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-slate-950/8 to-transparent sm:hidden" />
@@ -113,7 +113,7 @@ export function HomePage() {
                             <div className="absolute inset-x-0 bottom-0 p-3 sm:inset-x-5 sm:bottom-5 sm:p-0">
                                 <div className="max-w-[76%] rounded-[1rem] bg-transparent p-0 shadow-none sm:max-w-[24rem] sm:rounded-[1.15rem] sm:border sm:border-white/60 sm:bg-white/82 sm:p-4 sm:shadow-[0_12px_28px_rgba(15,23,42,0.12)] sm:backdrop-blur lg:max-w-[27rem]">
                                     <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/78 sm:text-[10px] sm:tracking-[0.2em] sm:text-stone-500">
-                                        Robarol Elite
+                                        Robarol
                                     </span>
                                     <strong className="mt-1.5 block font-display text-[1.08rem] leading-tight text-white sm:mt-2 sm:text-[1.9rem] sm:leading-[1.02] sm:text-slate-950 lg:text-[2.2rem]">
                                         Verified availability. Clear details. Direct contact.
@@ -255,7 +255,7 @@ export function HomePage() {
                             to="/contact"
                             className="inline-flex items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50 sm:px-6 sm:py-4 sm:text-sm"
                         >
-                            Contact Robarol Elite
+                            Contact Robarol
                         </NavLink>
                     </div>
                 </div>

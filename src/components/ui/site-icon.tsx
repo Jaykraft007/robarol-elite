@@ -58,6 +58,15 @@ export function ArrowUpRightIcon(props: SiteIconProps) {
     );
 }
 
+export function PlusIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M12 5v14" />
+            <path d="M5 12h14" />
+        </BaseIcon>
+    );
+}
+
 export function MapPinIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>
@@ -89,6 +98,54 @@ export function SearchIcon(props: SiteIconProps) {
         <BaseIcon {...props}>
             <circle cx="11" cy="11" r="6.5" />
             <path d="m16 16 4 4" />
+        </BaseIcon>
+    );
+}
+
+export function EyeIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+            <circle cx="12" cy="12" r="2.8" />
+        </BaseIcon>
+    );
+}
+
+export function PencilIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m14 5 5 5" />
+            <path d="M4 20h5l10-10a1.8 1.8 0 0 0 0-2.5l-2.5-2.5a1.8 1.8 0 0 0-2.5 0L4 15v5Z" />
+        </BaseIcon>
+    );
+}
+
+export function TrashIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M4 7h16" />
+            <path d="M9 7V4h6v3" />
+            <path d="m6 7 1 13h10l1-13" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
+        </BaseIcon>
+    );
+}
+
+export function UploadIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M12 16V6" />
+            <path d="m8.5 9.5 3.5-3.5 3.5 3.5" />
+            <path d="M5 18.5v1a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5v-1" />
+        </BaseIcon>
+    );
+}
+
+export function ChevronDownIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m6 9 6 6 6-6" />
         </BaseIcon>
     );
 }

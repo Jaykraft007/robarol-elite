@@ -8,7 +8,7 @@ export function ServicesPage() {
             <PageHero
                 eyebrow="Support"
                 title="Sourcing and follow-through."
-                description="From shortlist to handover, Robarol Elite keeps every step direct and clear."
+                description="From shortlist to handover, Robarol keeps every step direct and clear."
             />
 
             <section className="pb-10 pt-4 sm:pb-16 sm:pt-6">

@@ -3,6 +3,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import { PageHero } from "../components/ui/page-hero";
 import { MailIcon, PhoneIcon, WhatsappIcon } from "../components/ui/site-icon";
 import { useSiteData } from "../modules/site-data/site-data.context";
+import { formatListingPrice } from "../modules/site-data/listing-helpers";
 import { buildMailtoLink, buildWhatsAppLink, createInquiryMessage } from "../utils/inquiry-links";
 
 interface ContactFormState {
@@ -22,7 +23,7 @@ export function ContactPage() {
         email: "",
         phone: "",
         location: "",
-        selectedListing: listings[0]?.name ?? "General inquiry",
+        selectedListing: listings[0]?.title ?? "General inquiry",
         message: "Hello, I am interested in this listing. Please send me more details."
     });
 
@@ -30,7 +31,7 @@ export function ContactPage() {
         return null;
     }
 
-    const selectedListing = listings.find((listing) => listing.name === formState.selectedListing);
+    const selectedListing = listings.find((listing) => listing.title === formState.selectedListing);
 
     const inquiryMessage = useMemo(() => createInquiryMessage({
         fullName: formState.fullName,
@@ -38,7 +39,7 @@ export function ContactPage() {
         phone: formState.phone,
         location: formState.location,
         listingName: formState.selectedListing,
-        price: selectedListing?.price ?? "Request pricing",
+        price: selectedListing ? formatListingPrice(selectedListing) : "Request pricing",
         message: formState.message
     }), [formState, selectedListing]);
 
@@ -73,7 +74,7 @@ export function ContactPage() {
                                 Contact Desk
                             </p>
                             <h2 className="font-display mt-2 text-[1.45rem] leading-tight text-slate-950 sm:text-[1.85rem]">
-                                Contact Robarol Elite
+                                Contact Robarol
                             </h2>
                             <p className="mt-1.5 text-sm leading-6 text-slate-600 sm:mt-2">
                                 Reach us directly for cars, yachts and property inquiries.
@@ -81,7 +82,7 @@ export function ContactPage() {
                         </div>
 
                         <a
-                            href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol Elite, I would like to make an inquiry.")}
+                            href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol, I would like to make an inquiry.")}
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-3 rounded-[1rem] border border-emerald-200 bg-emerald-50 px-3.5 py-3 text-sm text-emerald-800 shadow-[0_8px_20px_rgba(5,150,105,0.08)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
@@ -209,8 +210,8 @@ export function ContactPage() {
                                         >
                                             <option>General inquiry</option>
                                             {listings.map((listing) => (
-                                                <option key={listing.id} value={listing.name}>
-                                                    {listing.name}
+                                                <option key={listing.id} value={listing.title}>
+                                                    {listing.title}
                                                 </option>
                                             ))}
                                         </select>

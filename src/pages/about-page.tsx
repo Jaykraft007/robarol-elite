@@ -15,21 +15,21 @@ export function AboutPage() {
                 <div className="mx-auto grid w-[min(1200px,calc(100%-1rem))] gap-4 sm:w-[min(1200px,calc(100%-1.5rem))] sm:gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <figure className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white p-4 shadow-[0_16px_44px_rgba(15,23,42,0.06)]">
                         <img
-                            src="/assets/luxury-property.png"
-                            alt="Luxury property exterior"
+                            src="/assets/catalog-mustang-side.jpg"
+                            alt="Premium listing available through Robarol"
                             className="h-full min-h-[24rem] w-full rounded-[1.5rem] object-cover lg:min-h-[29rem]"
                         />
                     </figure>
 
                     <div className="rounded-[2rem] border border-stone-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.99),rgba(250,246,238,0.94))] p-6 shadow-[0_16px_44px_rgba(15,23,42,0.06)] sm:p-8">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-500">
-                            Robarol Elite
+                            Robarol
                         </p>
                         <h2 className="font-display mt-3 text-4xl leading-[0.95] text-slate-950 sm:text-5xl">
                             Selected listings. Direct contact.
                         </h2>
                         <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-                            Robarol Elite presents selected automobiles, yachts and properties for buyers who value clear availability and direct response.
+                            Robarol presents selected automobiles, yachts and properties for buyers who value clear availability and direct response.
                         </p>
 
                         <div className="mt-5 grid gap-4 sm:grid-cols-3">

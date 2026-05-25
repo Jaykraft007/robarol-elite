@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 
+import { formatListingPrice } from "../../modules/site-data/listing-helpers";
 import type { CompanyProfile, Listing } from "../../modules/site-data/site-data.types";
 import { buildMailtoLink, buildWhatsAppLink, createInquiryMessage } from "../../utils/inquiry-links";
 import { CloseIcon, MailIcon, WhatsappIcon } from "../ui/site-icon";
@@ -26,7 +27,7 @@ export function InquiryForm({ company, listing, onClose }: InquiryFormProps) {
         email: "",
         phone: "",
         location: "",
-        selectedListing: listing?.name ?? "",
+        selectedListing: listing?.title ?? "",
         message: listing ? getListingInquiryDefaultMessage(listing) : "Hello, I am interested in this listing. Please send me more details."
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -49,7 +50,7 @@ export function InquiryForm({ company, listing, onClose }: InquiryFormProps) {
             email: "",
             phone: "",
             location: "",
-            selectedListing: listing.name,
+            selectedListing: listing.title,
             message: getListingInquiryDefaultMessage(listing)
         });
         setIsSubmitted(false);
@@ -73,7 +74,7 @@ export function InquiryForm({ company, listing, onClose }: InquiryFormProps) {
             phone: formState.phone,
             location: formState.location,
             listingName: formState.selectedListing,
-            price: listing.price,
+            price: formatListingPrice(listing),
             message: formState.message
         });
     }, [formState, listing]);
@@ -83,7 +84,7 @@ export function InquiryForm({ company, listing, onClose }: InquiryFormProps) {
     }
 
     const whatsappLink = buildWhatsAppLink(company.whatsappNumber, inquiryMessage);
-    const mailtoLink = buildMailtoLink(company.email, `Inquiry: ${listing.name}`, inquiryMessage);
+    const mailtoLink = buildMailtoLink(company.email, `Inquiry: ${listing.title}`, inquiryMessage);
 
     const handleChange = (field: keyof InquiryFormState, value: string) => {
         setFormState((current) => ({
@@ -171,9 +172,9 @@ export function InquiryForm({ company, listing, onClose }: InquiryFormProps) {
                                 Interested Listing
                             </span>
                             <strong className="mt-2 block text-lg font-semibold text-slate-950">
-                                {listing.name}
+                                {listing.title}
                             </strong>
-                            <p className="mt-1 text-sm text-slate-500">{listing.price}</p>
+                            <p className="mt-1 text-sm text-slate-500">{formatListingPrice(listing)}</p>
                         </div>
 
                         <div className="mt-4 grid gap-3.5 sm:mt-5 sm:grid-cols-2 sm:gap-5">

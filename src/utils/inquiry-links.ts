@@ -22,7 +22,7 @@ export function buildMailtoLink(email: string, subject: string, body: string) {
 
 export function createInquiryMessage(payload: InquiryPayload) {
     return [
-        "Hello Robarol Elite,",
+        "Hello Robarol,",
         `I am interested in the ${payload.listingName} listed at ${payload.price}.`,
         "",
         `My name: ${payload.fullName}`,
