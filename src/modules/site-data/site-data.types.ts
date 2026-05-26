@@ -11,9 +11,15 @@ export interface CompanyProfile {
     shortName: string;
     tagline: string;
     description: string;
+    contactName: string;
     email: string;
     phone: string;
     whatsappNumber: string;
+    websiteUrl: string;
+    websiteLabel: string;
+    instagramHandle: string;
+    instagramUrl: string;
+    facebookUrl: string;
 }
 
 export interface NavigationLink {

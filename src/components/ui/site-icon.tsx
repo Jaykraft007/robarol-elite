@@ -49,6 +49,29 @@ export function PropertyIcon(props: SiteIconProps) {
     );
 }
 
+export function BankIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M4 10 12 5l8 5" />
+            <path d="M5.5 10.5h13" />
+            <path d="M7 10.5V18" />
+            <path d="M12 10.5V18" />
+            <path d="M17 10.5V18" />
+            <path d="M4 19h16" />
+        </BaseIcon>
+    );
+}
+
+export function BriefcaseIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <rect x="4" y="7" width="16" height="12" rx="2" />
+            <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+            <path d="M4 11h16" />
+        </BaseIcon>
+    );
+}
+
 export function ArrowUpRightIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>

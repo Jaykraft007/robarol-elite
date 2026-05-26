@@ -45,7 +45,7 @@ export function SiteLayout() {
                     <div className="flex items-center justify-between rounded-[1.35rem] border border-stone-200 bg-white/92 px-4 py-3 shadow-[0_10px_28px_rgba(15,23,42,0.07)] backdrop-blur sm:rounded-[2rem] sm:px-6 sm:py-4 sm:shadow-[0_12px_36px_rgba(15,23,42,0.08)]">
                         <NavLink to="/" className="flex min-w-0 items-center gap-3 sm:gap-5" onClick={() => setIsMenuOpen(false)}>
                             <span className="grid size-9 place-items-center rounded-full bg-slate-950 font-display text-xs font-bold text-white shadow-[0_10px_18px_rgba(15,23,42,0.16)] sm:size-11 sm:text-sm sm:shadow-[0_12px_22px_rgba(15,23,42,0.18)]">
-                                RE
+                                RO
                             </span>
                             <span className="min-w-0">
                                 <span className="block truncate text-[12px] font-extrabold uppercase tracking-[0.2em] text-slate-950 sm:text-sm sm:tracking-[0.22em]">
@@ -63,7 +63,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="rounded-full bg-[#b54f32] px-3.5 py-2 text-[12px] font-bold !text-white visited:!text-white hover:!text-white shadow-[0_10px_22px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Inquiry
+                                Contact
                             </NavLink>
                             <button
                                 type="button"
@@ -93,7 +93,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="rounded-full bg-[#b54f32] px-6 py-3.5 text-sm font-bold !text-white visited:!text-white hover:!text-white shadow-[0_12px_30px_rgba(181,79,50,0.22)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Start Inquiry
+                                Contact Lats
                             </NavLink>
                         </nav>
                     </div>
@@ -121,7 +121,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="mt-1 inline-flex items-center justify-center rounded-[1rem] bg-[#b54f32] px-4 py-3 text-sm font-bold !text-white visited:!text-white hover:!text-white shadow-[0_10px_22px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Start Inquiry
+                                Contact Lats
                             </NavLink>
                         </nav>
                     </div>
@@ -139,28 +139,26 @@ export function SiteLayout() {
                     <div className="grid gap-5 md:grid-cols-[1.25fr_0.7fr_0.8fr]">
                         <div>
                             <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-stone-500">
-                                Private Inventory
+                                Direct Client Support
                             </p>
                             <h3 className="font-display mt-2.5 text-[1.55rem] text-slate-950 sm:mt-3 sm:text-3xl">{company.name}</h3>
                             <p className="mt-2.5 max-w-xl text-[13px] leading-6 text-slate-600 sm:mt-3 sm:text-sm sm:leading-7">
                                 {company.description}
                             </p>
+                            <p className="mt-2 text-[13px] font-medium text-slate-700 sm:text-sm">
+                                Direct contact: {company.contactName}
+                            </p>
                         </div>
                         <div className="grid grid-cols-2 gap-5 md:contents">
                             <div>
                                 <h4 className="text-[12px] font-bold uppercase tracking-[0.22em] text-stone-500 sm:text-sm">
-                                    Categories
+                                    Explore
                                 </h4>
                                 <div className="mt-3 grid gap-2.5 text-[13px] text-slate-600 sm:mt-4 sm:gap-3 sm:text-sm">
-                                    <NavLink to="/inventory?category=automobiles" className="transition hover:text-slate-950">
-                                        Automobiles
-                                    </NavLink>
-                                    <NavLink to="/inventory?category=yachts" className="transition hover:text-slate-950">
-                                        Yachts
-                                    </NavLink>
-                                    <NavLink to="/inventory?category=properties" className="transition hover:text-slate-950">
-                                        Properties
-                                    </NavLink>
+                                    <NavLink to="/inventory" className="transition hover:text-slate-950">Inventory</NavLink>
+                                    <NavLink to="/services" className="transition hover:text-slate-950">Services</NavLink>
+                                    <NavLink to="/finance" className="transition hover:text-slate-950">Finance</NavLink>
+                                    <NavLink to="/about" className="transition hover:text-slate-950">About</NavLink>
                                 </div>
                             </div>
                             <div>
@@ -174,8 +172,17 @@ export function SiteLayout() {
                                     <a href={`tel:${company.phone.replace(/\s+/g, "")}`} className="transition hover:text-slate-950">
                                         {company.phone}
                                     </a>
+                                    <a href={company.websiteUrl} target="_blank" rel="noreferrer" className="transition hover:text-slate-950">
+                                        {company.websiteLabel}
+                                    </a>
+                                    <a href={company.instagramUrl} target="_blank" rel="noreferrer" className="transition hover:text-slate-950">
+                                        {company.instagramHandle}
+                                    </a>
+                                    <a href={company.facebookUrl} target="_blank" rel="noreferrer" className="transition hover:text-slate-950">
+                                        Facebook Page
+                                    </a>
                                     <NavLink to="/contact" className="transition hover:text-slate-950">
-                                        Start inquiry
+                                        Contact Lats
                                     </NavLink>
                                 </div>
                             </div>

@@ -4,16 +4,24 @@ import type { CompanyProfile, Listing, NavigationLink } from "./site-data.types"
 export const companyProfile: CompanyProfile = {
     name: "Robarol",
     shortName: "Robarol",
-    tagline: "Automobiles, Yachts, Properties",
-    description: "Robarol presents selected automobiles, yachts and properties for direct private inquiry.",
-    email: "info@robarol.com",
-    phone: "+00 123 456 789",
-    whatsappNumber: "00123456789"
+    tagline: "Yachts, Automobiles, Finance & Foreigner Support",
+    description: "Robarol supports yacht and automobile clients with direct sourcing, loan guidance, visa support, PR applications and business setup help for foreigners.",
+    contactName: "Lats",
+    email: "robarolsg@gmail.com",
+    phone: "+65 8086 8730",
+    whatsappNumber: "6580868730",
+    websiteUrl: "https://www.robarol.com",
+    websiteLabel: "www.robarol.com",
+    instagramHandle: "@robarol.yachts.automobiles",
+    instagramUrl: "https://www.instagram.com/robarol.yachts.automobiles/",
+    facebookUrl: "https://www.facebook.com/share/1GwiYxJVsW/"
 };
 
 export const navigationLinks: NavigationLink[] = [
     { label: "Home", to: "/" },
-    { label: "Listings", to: "/inventory" },
+    { label: "Inventory", to: "/inventory" },
+    { label: "Services", to: "/services" },
+    { label: "Finance", to: "/finance" },
     { label: "About", to: "/about" }
 ];
 

@@ -86,20 +86,20 @@ export function InventoryPage() {
             <PageHero
                 eyebrow="Our Inventory"
                 title="Available listings"
-                description="Browse selected cars, yachts and properties open for inquiry."
+                description="Browse current showcase listings and reach Robarol directly for sourcing, finance and next-step support."
                 actions={
                     <>
                         <a
                             href={company ? `https://wa.me/${company.whatsappNumber.replace(/[^\d]/g, "")}` : "#"}
                             className="inline-flex items-center justify-center rounded-full bg-[#b54f32] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(181,79,50,0.22)] transition duration-300 ease-out hover:brightness-[0.96]"
                         >
-                            WhatsApp Us
+                            WhatsApp Lats
                         </a>
                         <NavLink
                             to="/contact"
                             className="inline-flex items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50"
                         >
-                            Contact Desk
+                            Contact Lats
                         </NavLink>
                     </>
                 }
@@ -235,7 +235,7 @@ export function InventoryPage() {
                             Direct Inquiry
                         </p>
                         <h2 className="font-display mt-2 text-[1.45rem] leading-tight text-slate-950 sm:text-[2rem]">
-                            Find the right asset and speak with us directly.
+                            Need sourcing, finance or paperwork support around a listing?
                         </h2>
                     </div>
                     <div className="flex flex-col gap-2.5 sm:flex-row">
@@ -243,13 +243,13 @@ export function InventoryPage() {
                             href={company ? `https://wa.me/${company.whatsappNumber.replace(/[^\d]/g, "")}` : "#"}
                             className="inline-flex items-center justify-center rounded-full bg-[#b54f32] px-4 py-2.5 text-[13px] font-semibold text-white shadow-[0_12px_26px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:brightness-[0.96] sm:px-5 sm:py-3 sm:text-sm"
                         >
-                            Send Inquiry
+                            WhatsApp Lats
                         </a>
                         <NavLink
                             to="/contact"
                             className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50 sm:px-5 sm:py-3 sm:text-sm"
                         >
-                            Contact Desk
+                            Contact Lats
                         </NavLink>
                     </div>
                 </div>
