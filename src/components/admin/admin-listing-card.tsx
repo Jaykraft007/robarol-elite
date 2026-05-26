@@ -33,8 +33,7 @@ export function AdminListingCard({ listing, onView, onDelete, onStatusChange }: 
                         <ListingStatusBadge status={listing.status} />
                     </div>
                     <h3 className="mt-3 text-base font-semibold text-slate-950">{listing.title}</h3>
-                    <p className="mt-1 text-sm text-slate-500">{listing.location}</p>
-                    <strong className="mt-3 block text-lg font-semibold text-[#b54f32]">{formatListingPrice(listing)}</strong>
+                    <strong className="mt-2 block text-lg font-semibold text-[#b54f32]">{formatListingPrice(listing)}</strong>
                 </div>
             </div>
 

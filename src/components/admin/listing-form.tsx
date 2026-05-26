@@ -3,13 +3,11 @@ import { useMemo, useState } from "react";
 import {
     buildInquiryTemplatePreview,
     inquiryLabelOptions,
-    listingCurrencyOptions,
     listingStatusOptions
 } from "../../modules/site-data/listing-helpers";
 import type {
     Listing,
     ListingCategory,
-    ListingCurrency,
     ListingDraft,
     ListingInquiryLabel,
     ListingSpecs,
@@ -32,8 +30,6 @@ interface ListingFormState {
     category: ListingCategory;
     status: ListingStatus;
     price: string;
-    currency: ListingCurrency;
-    location: string;
     shortDescription: string;
     mainImage: string;
     galleryImages: string[];
@@ -43,26 +39,22 @@ interface ListingFormState {
     specs: ListingSpecs;
 }
 
-type ValidationErrors = Partial<Record<"title" | "status" | "price" | "location" | "shortDescription" | "mainImage", string>>;
+type ValidationErrors = Partial<Record<"title" | "status" | "price" | "shortDescription" | "mainImage", string>>;
 
 const fieldClassName = "min-h-12 rounded-[1rem] border border-stone-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8";
 
 const sectionClassName = "rounded-[1.65rem] border border-stone-200 bg-white p-5 shadow-[0_12px_32px_rgba(15,23,42,0.05)] sm:p-6";
 
-const specFieldsByCategory: Record<ListingCategory, Array<{ key: keyof ListingSpecs; label: string; placeholder: string }>> = {
+const specFieldsByCategory: Record<ListingCategory, Array<{ key: keyof ListingSpecs; label: string; placeholder: string; inputType?: "text" | "date" }>> = {
     automobiles: [
         { key: "year", label: "Year", placeholder: "2024" },
         { key: "mileage", label: "Mileage", placeholder: "3,300 km" },
-        { key: "transmission", label: "Transmission", placeholder: "Automatic" },
-        { key: "fuelType", label: "Fuel type", placeholder: "Petrol Hybrid" },
-        { key: "condition", label: "Condition", placeholder: "Foreign used" },
-        { key: "bodyType", label: "Body type", placeholder: "Luxury Sedan" }
+        { key: "coeExpiryDate", label: "COE expiry date", placeholder: "", inputType: "date" }
     ],
     yachts: [
         { key: "year", label: "Year", placeholder: "2023" },
         { key: "length", label: "Length", placeholder: "60 ft" },
         { key: "engineHours", label: "Engine hours", placeholder: "220 hrs" },
-        { key: "fuelType", label: "Fuel type", placeholder: "Twin Diesel" },
         { key: "cabins", label: "Cabin count", placeholder: "3" },
         { key: "marina", label: "Location / Marina", placeholder: "Marina Collection" }
     ],
@@ -83,8 +75,6 @@ function createInitialState(listing?: Listing): ListingFormState {
             category: listing.category,
             status: listing.status,
             price: String(listing.price),
-            currency: listing.currency,
-            location: listing.location,
             shortDescription: listing.shortDescription,
             mainImage: listing.mainImage,
             galleryImages: listing.galleryImages.filter((image) => image !== listing.mainImage),
@@ -100,8 +90,6 @@ function createInitialState(listing?: Listing): ListingFormState {
         category: "automobiles",
         status: "available",
         price: "",
-        currency: "USD",
-        location: "",
         shortDescription: "",
         mainImage: "",
         galleryImages: [],
@@ -116,14 +104,13 @@ function normalizeDraft(state: ListingFormState, intent: SaveIntent): ListingDra
     const parsedPrice = Number(state.price.replace(/[^0-9.]/g, ""));
     const nextStatus = intent === "draft" ? "hidden" : state.status;
     const nextShowOnWebsite = intent === "draft" ? false : state.showOnWebsite;
+    const allowedKeys = new Set(specFieldsByCategory[state.category].map((field) => field.key));
 
     return {
         title: state.title.trim(),
         category: state.category,
         status: nextStatus,
         price: Number.isFinite(parsedPrice) ? parsedPrice : 0,
-        currency: state.currency,
-        location: state.location.trim(),
         shortDescription: state.shortDescription.trim(),
         mainImage: state.mainImage,
         galleryImages: [state.mainImage, ...state.galleryImages].filter((image, index, items) => image && items.indexOf(image) === index),
@@ -131,7 +118,9 @@ function normalizeDraft(state: ListingFormState, intent: SaveIntent): ListingDra
         showOnWebsite: nextShowOnWebsite,
         inquiryLabel: state.inquiryLabel,
         specs: Object.fromEntries(
-            Object.entries(state.specs).filter(([, value]) => value && value.trim().length > 0)
+            Object.entries(state.specs).filter(([key, value]) =>
+                allowedKeys.has(key as keyof ListingSpecs) && value && value.trim().length > 0
+            )
         )
     };
 }
@@ -145,10 +134,6 @@ function validateState(state: ListingFormState): ValidationErrors {
 
     if (!state.price.trim()) {
         errors.price = "Price is required";
-    }
-
-    if (!state.location.trim()) {
-        errors.location = "Location is required";
     }
 
     if (!state.shortDescription.trim()) {
@@ -222,13 +207,11 @@ export function ListingForm({ mode, initialListing, assetImages, onCancel, onSav
     const inquiryPreview = useMemo(
         () => buildInquiryTemplatePreview({
             title: formState.title || "Mercedes-Maybach S680",
-            currency: formState.currency,
             price: Number(formState.price.replace(/[^0-9.]/g, "")) || 238000,
-            location: formState.location || "Lagos, Nigeria",
             status: formState.status,
             inquiryLabel: formState.inquiryLabel
         }),
-        [formState.currency, formState.inquiryLabel, formState.location, formState.price, formState.status, formState.title]
+        [formState.inquiryLabel, formState.price, formState.status, formState.title]
     );
 
     const handleSave = (intent: SaveIntent) => {
@@ -306,18 +289,6 @@ export function ListingForm({ mode, initialListing, assetImages, onCancel, onSav
                     </label>
 
                     <label className="grid gap-2">
-                        <RequiredLabel>Location</RequiredLabel>
-                        <input
-                            type="text"
-                            value={formState.location}
-                            onChange={(event) => setFormState((current) => ({ ...current, location: event.target.value }))}
-                            placeholder="Lagos, Nigeria"
-                            className={fieldClassName}
-                        />
-                        {errors.location ? <span className="text-sm text-[#8f3c28]">{errors.location}</span> : null}
-                    </label>
-
-                    <label className="grid gap-2">
                         <RequiredLabel>Price</RequiredLabel>
                         <input
                             type="text"
@@ -328,21 +299,6 @@ export function ListingForm({ mode, initialListing, assetImages, onCancel, onSav
                             className={fieldClassName}
                         />
                         {errors.price ? <span className="text-sm text-[#8f3c28]">{errors.price}</span> : null}
-                    </label>
-
-                    <label className="grid gap-2">
-                        <span className="text-[13px] font-medium text-slate-700">Currency</span>
-                        <select
-                            value={formState.currency}
-                            onChange={(event) => setFormState((current) => ({ ...current, currency: event.target.value as ListingCurrency }))}
-                            className={fieldClassName}
-                        >
-                            {listingCurrencyOptions.map((item) => (
-                                <option key={item.value} value={item.value}>
-                                    {item.label}
-                                </option>
-                            ))}
-                        </select>
                     </label>
 
                     <label className="grid gap-2 md:col-span-2">
@@ -386,7 +342,7 @@ export function ListingForm({ mode, initialListing, assetImages, onCancel, onSav
                         <label key={field.key} className="grid gap-2">
                             <span className="text-[13px] font-medium text-slate-700">{field.label}</span>
                             <input
-                                type="text"
+                                type={field.inputType ?? "text"}
                                 value={formState.specs[field.key] ?? ""}
                                 onChange={(event) => setFormState((current) => ({
                                     ...current,

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { formatListingPrice, getListingDisplayDetails, getListingInquiryDefaultMessage } from "../../modules/site-data/listing-helpers";
 import { useSiteData } from "../../modules/site-data/site-data.context";
 import type { Listing } from "../../modules/site-data/site-data.types";
-import { ArrowUpRightIcon, CloseIcon, MapPinIcon } from "../ui/site-icon";
+import { ArrowUpRightIcon, CloseIcon } from "../ui/site-icon";
 import { buildWhatsAppLink } from "../../utils/inquiry-links";
 import { getListingDisplayStatusLabel, getListingInquiryLabel, getListingStatusClassName, listingCategoryMeta } from "./listing-meta";
 
@@ -96,11 +96,6 @@ export function ListingDetailsModal({ listing, onClose, onEnquire, showInquiryAc
                         <h2 id={`listing-title-${listing.id}`} className="font-display mt-5 text-4xl leading-tight text-slate-950 sm:text-5xl">
                             {listing.title}
                         </h2>
-
-                        <div className="mt-4 inline-flex items-center gap-2 text-sm text-slate-500">
-                            <MapPinIcon className="h-4 w-4" />
-                            <span>{listing.location}</span>
-                        </div>
 
                         <div className="mt-5 rounded-[1.4rem] border border-stone-200 bg-white/90 p-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)]">
                             <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400">

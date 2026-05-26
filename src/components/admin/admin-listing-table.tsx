@@ -24,7 +24,6 @@ export function AdminListingTable({ listings, onView, onDelete, onStatusChange }
                             <th className="px-5 py-4">Listing</th>
                             <th className="px-5 py-4">Category</th>
                             <th className="px-5 py-4">Price</th>
-                            <th className="px-5 py-4">Location</th>
                             <th className="px-5 py-4">Status</th>
                             <th className="px-5 py-4">Updated</th>
                             <th className="px-5 py-4">Actions</th>
@@ -68,7 +67,6 @@ export function AdminListingTable({ listings, onView, onDelete, onStatusChange }
                                         </span>
                                     </td>
                                     <td className="px-5 py-4 text-sm font-semibold text-slate-950">{formatListingPrice(listing)}</td>
-                                    <td className="px-5 py-4 text-sm text-slate-600">{listing.location}</td>
                                     <td className="px-5 py-4">
                                         <ListingStatusBadge status={listing.status} />
                                     </td>

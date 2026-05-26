@@ -65,7 +65,6 @@ export function AdminListingsPage() {
 
                 return [
                     listing.title,
-                    listing.location,
                     listing.shortDescription,
                     listing.category,
                     getListingStatusLabel(listing.status)

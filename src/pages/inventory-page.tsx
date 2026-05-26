@@ -45,7 +45,7 @@ export function InventoryPage() {
         }
 
         return statusItems.filter((listing) =>
-            [listing.title, listing.location, listing.shortDescription, listing.category, formatListingPrice(listing), getListingStatusLabel(listing.status)]
+            [listing.title, listing.shortDescription, listing.category, formatListingPrice(listing), getListingStatusLabel(listing.status)]
                 .join(" ")
                 .toLowerCase()
                 .includes(normalizedSearch)

@@ -43,8 +43,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "automobiles",
         status: "available",
         price: 238000,
-        currency: "USD",
-        location: "Lagos, Nigeria",
         shortDescription: "Executive luxury sedan with premium comfort.",
         mainImage: "/assets/catalog-mercedes-front.jpg",
         galleryImages: [
@@ -57,10 +55,7 @@ export const defaultListingCatalog: Listing[] = [
         specs: {
             year: "2024",
             mileage: "3,300 km",
-            transmission: "Automatic",
-            fuelType: "Petrol Hybrid",
-            condition: "Foreign used",
-            bodyType: "Luxury Sedan"
+            coeExpiryDate: "2034-06-12"
         },
         createdAt: "2026-05-10T09:30:00.000Z",
         updatedAt: "2026-05-20T08:15:00.000Z"
@@ -71,8 +66,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "automobiles",
         status: "available",
         price: 186000,
-        currency: "USD",
-        location: "Abuja, Nigeria",
         shortDescription: "High-luxury performance SUV.",
         mainImage: "/assets/catalog-maserati-front.jpg",
         galleryImages: [
@@ -85,10 +78,7 @@ export const defaultListingCatalog: Listing[] = [
         specs: {
             year: "2024",
             mileage: "7,800 km",
-            transmission: "Automatic",
-            fuelType: "Petrol",
-            condition: "Foreign used",
-            bodyType: "SUV"
+            coeExpiryDate: "2035-02-28"
         },
         createdAt: "2026-05-10T10:10:00.000Z",
         updatedAt: "2026-05-18T14:05:00.000Z"
@@ -99,8 +89,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "yachts",
         status: "available",
         price: 1420000,
-        currency: "USD",
-        location: "Lagos, Nigeria",
         shortDescription: "Sport yacht with open-deck appeal.",
         mainImage: "/assets/catalog-gtr-angle.jpg",
         galleryImages: [
@@ -114,7 +102,6 @@ export const defaultListingCatalog: Listing[] = [
             year: "2023",
             length: "60 ft",
             engineHours: "220 hrs",
-            fuelType: "Twin Diesel",
             cabins: "3",
             marina: "Marina Collection"
         },
@@ -127,8 +114,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "yachts",
         status: "coming_soon",
         price: 1080000,
-        currency: "USD",
-        location: "Lekki, Nigeria",
         shortDescription: "Modern flybridge yacht with refined leisure space.",
         mainImage: "/assets/catalog-mustang-front.jpg",
         galleryImages: [
@@ -142,7 +127,6 @@ export const defaultListingCatalog: Listing[] = [
             year: "2022",
             length: "55 ft",
             engineHours: "340 hrs",
-            fuelType: "Twin Diesel",
             cabins: "3",
             marina: "Private Marina"
         },
@@ -155,8 +139,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "properties",
         status: "available",
         price: 3900000,
-        currency: "USD",
-        location: "Banana Island, Lagos",
         shortDescription: "Contemporary waterfront residence.",
         mainImage: "/assets/catalog-bmw-front.jpg",
         galleryImages: [
@@ -183,8 +165,6 @@ export const defaultListingCatalog: Listing[] = [
         category: "properties",
         status: "sold",
         price: 2250000,
-        currency: "USD",
-        location: "Eko Atlantic, Lagos",
         shortDescription: "Ocean-facing penthouse listing.",
         mainImage: "/assets/catalog-bmw-side.jpg",
         galleryImages: [

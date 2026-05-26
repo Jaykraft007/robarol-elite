@@ -2,8 +2,6 @@ export type ListingCategory = "automobiles" | "yachts" | "properties";
 
 export type ListingStatus = "available" | "coming_soon" | "sold" | "hidden";
 
-export type ListingCurrency = "USD" | "SGD" | "GBP" | "NGN";
-
 export type ListingInquiryLabel = "Send Inquiry" | "Register Interest" | "Similar Inquiry";
 
 export interface CompanyProfile {
@@ -30,10 +28,7 @@ export interface NavigationLink {
 export interface ListingSpecs {
     year?: string;
     mileage?: string;
-    transmission?: string;
-    fuelType?: string;
-    condition?: string;
-    bodyType?: string;
+    coeExpiryDate?: string;
     length?: string;
     engineHours?: string;
     cabins?: string;
@@ -52,8 +47,6 @@ export interface Listing {
     category: ListingCategory;
     status: ListingStatus;
     price: number;
-    currency: ListingCurrency;
-    location: string;
     shortDescription: string;
     mainImage: string;
     galleryImages: string[];
@@ -70,8 +63,6 @@ export interface ListingDraft {
     category: ListingCategory;
     status: ListingStatus;
     price: number;
-    currency: ListingCurrency;
-    location: string;
     shortDescription: string;
     mainImage: string;
     galleryImages: string[];

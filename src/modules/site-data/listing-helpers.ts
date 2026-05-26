@@ -1,7 +1,6 @@
 import type {
     Listing,
     ListingCategory,
-    ListingCurrency,
     ListingInquiryLabel,
     ListingSpecs,
     ListingStatus
@@ -18,13 +17,6 @@ export const listingStatusOptions: Array<{ label: string; value: ListingStatus }
     { label: "Coming Soon", value: "coming_soon" },
     { label: "Sold", value: "sold" },
     { label: "Hidden", value: "hidden" }
-];
-
-export const listingCurrencyOptions: Array<{ label: string; value: ListingCurrency }> = [
-    { label: "USD", value: "USD" },
-    { label: "SGD", value: "SGD" },
-    { label: "GBP", value: "GBP" },
-    { label: "NGN", value: "NGN" }
 ];
 
 export const inquiryLabelOptions: Array<{ label: string; value: ListingInquiryLabel }> = [
@@ -52,27 +44,18 @@ export const listingStatusMeta: Record<ListingStatus, { label: string; badgeClas
     }
 };
 
-const currencyFormatters: Record<ListingCurrency, Intl.NumberFormat> = {
-    USD: new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }),
-    SGD: new Intl.NumberFormat("en-SG", { style: "currency", currency: "SGD", maximumFractionDigits: 0 }),
-    GBP: new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }),
-    NGN: new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 })
-};
+const priceFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
 const specOrder: Record<ListingCategory, Array<{ key: keyof ListingSpecs; label: string }>> = {
     automobiles: [
         { key: "year", label: "Year" },
         { key: "mileage", label: "Mileage" },
-        { key: "transmission", label: "Transmission" },
-        { key: "fuelType", label: "Fuel" },
-        { key: "condition", label: "Condition" },
-        { key: "bodyType", label: "Body Type" }
+        { key: "coeExpiryDate", label: "COE Expiry Date" }
     ],
     yachts: [
         { key: "year", label: "Year" },
         { key: "length", label: "Length" },
         { key: "engineHours", label: "Engine Hours" },
-        { key: "fuelType", label: "Fuel" },
         { key: "cabins", label: "Cabins" },
         { key: "marina", label: "Marina" }
     ],
@@ -101,8 +84,8 @@ export function getDefaultInquiryLabel(status: ListingStatus): ListingInquiryLab
     }
 }
 
-export function formatListingPrice(listing: Pick<Listing, "price" | "currency">) {
-    return currencyFormatters[listing.currency].format(listing.price);
+export function formatListingPrice(listing: Pick<Listing, "price">) {
+    return priceFormatter.format(listing.price);
 }
 
 export function getListingDisplayDetails(listing: Pick<Listing, "category" | "specs">) {
@@ -116,7 +99,7 @@ export function getListingDisplayDetails(listing: Pick<Listing, "category" | "sp
 
             return {
                 label: item.label,
-                value
+                value: item.key === "coeExpiryDate" ? formatDateLabel(value) : value
             };
         })
         .filter((item): item is { label: string; value: string } => item !== null);
@@ -126,7 +109,7 @@ export function getListingInquiryLabel(listing: Pick<Listing, "inquiryLabel" | "
     return listing.inquiryLabel || getDefaultInquiryLabel(listing.status);
 }
 
-export function getListingInquiryDefaultMessage(listing: Pick<Listing, "title" | "price" | "currency" | "location" | "status" | "inquiryLabel">) {
+export function getListingInquiryDefaultMessage(listing: Pick<Listing, "title" | "price" | "status" | "inquiryLabel">) {
     const intentLine = (() => {
         switch (listing.inquiryLabel || getDefaultInquiryLabel(listing.status)) {
             case "Register Interest":
@@ -140,16 +123,16 @@ export function getListingInquiryDefaultMessage(listing: Pick<Listing, "title" |
 
     return [
         "Hello Robarol,",
-        `${intentLine} It is listed at ${formatListingPrice(listing)} in ${listing.location}.`,
+        `${intentLine} It is listed at ${formatListingPrice(listing)}.`,
         "",
         "Please send me more details."
     ].join("\n");
 }
 
-export function buildInquiryTemplatePreview(listing: Pick<Listing, "title" | "price" | "currency" | "location" | "status" | "inquiryLabel">) {
+export function buildInquiryTemplatePreview(listing: Pick<Listing, "title" | "price" | "status" | "inquiryLabel">) {
     return [
         "Hello Robarol,",
-        `${getTemplateIntentLine(listing)} It is listed at ${formatListingPrice(listing)} in ${listing.location}.`,
+        `${getTemplateIntentLine(listing)} It is listed at ${formatListingPrice(listing)}.`,
         "",
         "Name: [Customer Name]",
         "Phone: [Customer Phone]",
@@ -189,4 +172,18 @@ export function formatAdminUpdatedAt(value: string) {
         month: "short",
         year: "numeric"
     }).format(new Date(value));
+}
+
+function formatDateLabel(value: string) {
+    const parsed = new Date(value);
+
+    if (Number.isNaN(parsed.getTime())) {
+        return value;
+    }
+
+    return new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }).format(parsed);
 }

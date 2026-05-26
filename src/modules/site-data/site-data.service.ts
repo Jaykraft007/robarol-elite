@@ -1,6 +1,6 @@
 import { defaultListingCatalog, companyProfile, navigationLinks } from "./site-data.data";
 import { sortListingsForPublic } from "./listing-helpers";
-import type { Listing, ListingDraft, ListingStatus, SiteDataSnapshot } from "./site-data.types";
+import type { Listing, ListingCategory, ListingDraft, ListingSpecs, ListingStatus, SiteDataSnapshot } from "./site-data.types";
 
 const LISTING_STORAGE_KEY = "robarol:listings";
 
@@ -44,26 +44,9 @@ function parseStoredListings(rawValue: string | null) {
             return null;
         }
 
-        const validListings = parsed.filter((item): item is Listing => (
-            item
-            && typeof item === "object"
-            && typeof item.id === "string"
-            && typeof item.title === "string"
-            && typeof item.category === "string"
-            && typeof item.status === "string"
-            && typeof item.price === "number"
-            && typeof item.currency === "string"
-            && typeof item.location === "string"
-            && typeof item.shortDescription === "string"
-            && typeof item.mainImage === "string"
-            && Array.isArray(item.galleryImages)
-            && typeof item.featured === "boolean"
-            && typeof item.showOnWebsite === "boolean"
-            && typeof item.inquiryLabel === "string"
-            && typeof item.specs === "object"
-            && typeof item.createdAt === "string"
-            && typeof item.updatedAt === "string"
-        ));
+        const validListings = parsed
+            .map((item) => normalizeStoredListing(item))
+            .filter((item): item is Listing => item !== null);
 
         return validListings.length === parsed.length ? validListings.map(cloneListing) : null;
     } catch {
@@ -185,4 +168,65 @@ export function getListingRecordById(listingId: string) {
 
 export function getPublicListingCatalog() {
     return sortListingsForPublic(loadListingCatalog().filter((listing) => listing.showOnWebsite && listing.status !== "hidden"));
+}
+
+function normalizeStoredListing(item: unknown): Listing | null {
+    if (!item || typeof item !== "object") {
+        return null;
+    }
+
+    const record = item as Record<string, unknown>;
+
+    if (
+        typeof record.id !== "string"
+        || typeof record.title !== "string"
+        || typeof record.category !== "string"
+        || typeof record.status !== "string"
+        || typeof record.price !== "number"
+        || typeof record.shortDescription !== "string"
+        || typeof record.mainImage !== "string"
+        || !Array.isArray(record.galleryImages)
+        || typeof record.featured !== "boolean"
+        || typeof record.showOnWebsite !== "boolean"
+        || typeof record.inquiryLabel !== "string"
+        || !record.specs
+        || typeof record.specs !== "object"
+        || typeof record.createdAt !== "string"
+        || typeof record.updatedAt !== "string"
+    ) {
+        return null;
+    }
+
+    const category = record.category as ListingCategory;
+
+    return {
+        id: record.id,
+        title: record.title,
+        category,
+        status: record.status as ListingStatus,
+        price: record.price,
+        shortDescription: record.shortDescription,
+        mainImage: record.mainImage,
+        galleryImages: record.galleryImages.filter((image): image is string => typeof image === "string"),
+        featured: record.featured,
+        showOnWebsite: record.showOnWebsite,
+        inquiryLabel: record.inquiryLabel as Listing["inquiryLabel"],
+        specs: sanitizeListingSpecs(category, record.specs as ListingSpecs),
+        createdAt: record.createdAt,
+        updatedAt: record.updatedAt
+    };
+}
+
+function sanitizeListingSpecs(category: ListingCategory, specs: ListingSpecs) {
+    const allowedKeysByCategory: Record<ListingCategory, Array<keyof ListingSpecs>> = {
+        automobiles: ["year", "mileage", "coeExpiryDate"],
+        yachts: ["year", "length", "engineHours", "cabins", "marina"],
+        properties: ["bedrooms", "bathrooms", "interiorSize", "parking", "view", "propertyType"]
+    };
+
+    return Object.fromEntries(
+        allowedKeysByCategory[category]
+            .map((key) => [key, specs[key]])
+            .filter(([, value]) => typeof value === "string" && value.trim().length > 0)
+    ) as ListingSpecs;
 }
