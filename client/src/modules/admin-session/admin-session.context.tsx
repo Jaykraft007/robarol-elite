@@ -2,7 +2,13 @@ import { createContext, useContext, useEffect, useState, type PropsWithChildren 
 import type { AdminSession } from "@robarol/shared";
 
 import { ApiError } from "../core/api-client";
-import { fetchAdminSession, loginAdmin, logoutAdmin, signupAdmin } from "./admin-session.service";
+import {
+    fetchAdminSession,
+    loginAdmin,
+    logoutAdmin,
+    signupAdmin,
+    subscribeToAdminAuthChanges
+} from "./admin-session.service";
 
 interface AdminSessionContextValue {
     session: AdminSession | null;
@@ -19,34 +25,13 @@ export function AdminSessionProvider({ children }: PropsWithChildren) {
     const [session, setSession] = useState<AdminSession | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const verifyServerSession = async () => {
-        try {
-            const nextSession = await fetchAdminSession();
-            setSession(nextSession);
-            return nextSession;
-        } catch (error) {
-            setSession(null);
-
-            if (error instanceof ApiError && error.statusCode === 401) {
-                throw new ApiError(
-                    401,
-                    "Admin session was not stored. Open the frontend and API with the same host, either localhost or 127.0.0.1, then try again.",
-                    error.details,
-                    error.requestId
-                );
-            }
-
-            throw error;
-        }
-    };
-
     const refreshSession = async () => {
         try {
             const nextSession = await fetchAdminSession();
             setSession(nextSession);
             return nextSession;
         } catch (error) {
-            if (error instanceof ApiError && error.statusCode === 401) {
+            if (error instanceof ApiError && (error.statusCode === 401 || error.statusCode === 403)) {
                 setSession(null);
                 return null;
             }
@@ -63,19 +48,21 @@ export function AdminSessionProvider({ children }: PropsWithChildren) {
             setSession(null);
             setIsLoading(false);
         });
+
+        return subscribeToAdminAuthChanges(() => {
+            void refreshSession();
+        });
     }, []);
 
     const value: AdminSessionContextValue = {
         session,
         isLoading,
         login: async (email, password) => {
-            await loginAdmin(email, password);
-            return verifyServerSession();
+            const nextSession = await loginAdmin(email, password);
+            setSession(nextSession);
+            return nextSession;
         },
-        signup: async (email, password, signupSecret) => {
-            await signupAdmin(email, password, signupSecret);
-            return verifyServerSession();
-        },
+        signup: async (_email, _password, _signupSecret) => signupAdmin(),
         logout: async () => {
             await logoutAdmin();
             setSession(null);

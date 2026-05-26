@@ -114,16 +114,10 @@ export function SiteDataProvider({
                 console.error(error);
 
                 if (isActive) {
-                    if (error instanceof ApiError && error.statusCode === 401) {
-                        setLoadError([
-                            "Admin session could not be verified. Sign in again using the same host for the app and API.",
-                            error.requestId ? `Request ID: ${error.requestId}.` : null
-                        ].filter(Boolean).join(" "));
+                    if (error instanceof ApiError && (error.statusCode === 401 || error.statusCode === 403)) {
+                        setLoadError("Admin session could not be verified. Sign in again with an active admin account.");
                     } else if (error instanceof ApiError) {
-                        setLoadError([
-                            error.message,
-                            error.requestId ? `Request ID: ${error.requestId}.` : null
-                        ].filter(Boolean).join(" "));
+                        setLoadError(error.message);
                     } else {
                         setLoadError("Unable to load data right now.");
                     }

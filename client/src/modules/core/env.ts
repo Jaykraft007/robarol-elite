@@ -1,38 +1,12 @@
-const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+function getRequiredClientEnv(name: "VITE_SUPABASE_URL" | "VITE_SUPABASE_ANON_KEY") {
+    const value = import.meta.env[name]?.trim();
 
-function isLoopbackHost(hostname: string) {
-    return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1" || hostname === "[::1]";
-}
-
-function normalizeApiBaseUrl(rawUrl: string) {
-    const trimmedUrl = rawUrl.replace(/\/+$/, "");
-
-    if (typeof window === "undefined") {
-        return trimmedUrl;
+    if (!value) {
+        throw new Error(`Missing required client environment variable: ${name}.`);
     }
 
-    try {
-        const url = new URL(trimmedUrl);
-        const currentHostname = window.location.hostname;
-
-        if (isLoopbackHost(url.hostname) && isLoopbackHost(currentHostname) && url.hostname !== currentHostname) {
-            url.hostname = currentHostname;
-        }
-
-        return url.toString().replace(/\/+$/, "");
-    } catch {
-        return trimmedUrl;
-    }
+    return value;
 }
 
-function getDefaultApiBaseUrl() {
-    if (typeof window === "undefined") {
-        return "http://localhost:4000";
-    }
-
-    return `${window.location.protocol}//${window.location.hostname}:4000`;
-}
-
-export const apiBaseUrl = configuredApiUrl && configuredApiUrl.length > 0
-    ? normalizeApiBaseUrl(configuredApiUrl)
-    : getDefaultApiBaseUrl();
+export const supabaseUrl = getRequiredClientEnv("VITE_SUPABASE_URL");
+export const supabaseAnonKey = getRequiredClientEnv("VITE_SUPABASE_ANON_KEY");

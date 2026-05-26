@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Navigate, NavLink, useLocation, useNavigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 
 import { useAdminSession } from "../modules/admin-session/admin-session.context";
 import { companyProfile } from "../modules/site-data/site-data.data";
@@ -29,10 +29,7 @@ export function AdminLoginPage() {
             navigate(redirectTarget, { replace: true });
         } catch (error) {
             if (error instanceof ApiError) {
-                setErrorMessage([
-                    error.message,
-                    error.requestId ? `Request ID: ${error.requestId}.` : null
-                ].filter(Boolean).join(" "));
+                setErrorMessage(error.message);
             } else {
                 setErrorMessage("Unable to sign in right now.");
             }
@@ -93,12 +90,8 @@ export function AdminLoginPage() {
                             {isSubmitting ? "Signing in..." : "Sign in"}
                         </button>
                     </form>
-
                     <p className="mt-5 text-sm text-slate-600">
-                        Need to create the first admin?{" "}
-                        <NavLink to="/admin/signup" className="font-semibold text-[#b54f32] transition hover:text-[#8f3c28]">
-                            Create admin
-                        </NavLink>
+                        Admin access is provisioned directly in Supabase.
                     </p>
                 </div>
             </div>
