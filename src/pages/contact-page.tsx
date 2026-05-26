@@ -1,7 +1,7 @@
 import { useMemo, useState, type FormEvent } from "react";
 
 import { PageHero } from "../components/ui/page-hero";
-import { ArrowUpRightIcon, MailIcon, PhoneIcon, WhatsappIcon } from "../components/ui/site-icon";
+import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, WhatsappIcon } from "../components/ui/site-icon";
 import { useSiteData } from "../modules/site-data/site-data.context";
 import { formatListingPrice } from "../modules/site-data/listing-helpers";
 import { buildMailtoLink, buildWhatsAppLink, createInquiryMessage } from "../utils/inquiry-links";
@@ -24,22 +24,26 @@ export function ContactPage() {
         phone: "",
         location: "",
         selectedListing: "General inquiry",
-        message: "Hello, I would like to learn more about your services. Please share the next steps."
+        message: "Hello, I would like to make an inquiry. Please share the next steps."
     });
 
     if (!company) {
         return null;
     }
 
-    const interestOptions = [
+    const serviceOptions = [
         "General inquiry",
-        "Automobiles",
-        "Yachts",
-        "Finance & Loans",
+        "Yachts & Automobiles",
         "Business Development & Consulting",
-        "Visa / Employment Pass / PR",
-        "Business Setup for Foreigners",
-        ...listings.map((listing) => listing.title)
+        "Finance & Loans",
+        "Home Loans",
+        "Business Loans",
+        "Personal Loans",
+        "Cars & Yachts Loans",
+        "Visa for Foreigners",
+        "Employment Passes",
+        "PR Application",
+        "Open Business for Foreigners"
     ];
 
     const selectedListing = listings.find((listing) => listing.title === formState.selectedListing);
@@ -73,8 +77,8 @@ export function ContactPage() {
         <>
             <PageHero
                 eyebrow="Contact"
-                title={`Speak with ${company.contactName}`}
-                description="Contact Robarol for yachts, automobiles, finance, visa support, PR guidance or business setup assistance."
+                title={`Contact ${company.contactName}`}
+                description="Yachts & automobiles, business development, finance & loans, and support for foreigners."
             />
 
             <section className="pb-7 pt-3 sm:pb-10 sm:pt-4">
@@ -82,18 +86,18 @@ export function ContactPage() {
                     <aside className="grid gap-3.5 rounded-[1.4rem] border border-stone-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.99),rgba(250,246,238,0.94))] p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:rounded-[1.7rem] sm:gap-4 sm:p-6 sm:shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
                         <div>
                             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500">
-                                Contact Desk
+                                Contact
                             </p>
                             <h2 className="font-display mt-2 text-[1.45rem] leading-tight text-slate-950 sm:text-[1.85rem]">
-                                {company.contactName} at Robarol
+                                {company.contactName} (Robarol)
                             </h2>
                             <p className="mt-1.5 text-sm leading-6 text-slate-600 sm:mt-2">
-                                Reach out directly for inventory, loans, visa support or business setup guidance.
+                                Yachts & automobiles, finance & loans, business development and support for foreigners.
                             </p>
                         </div>
 
                         <a
-                            href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol, I would like to make an inquiry about your services.")}
+                            href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol, I would like to make an inquiry.")}
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-3 rounded-[1rem] border border-emerald-200 bg-emerald-50 px-3.5 py-3 text-sm text-emerald-800 shadow-[0_8px_20px_rgba(5,150,105,0.08)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
@@ -136,60 +140,45 @@ export function ContactPage() {
                             <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Send</span>
                         </a>
 
-                        <a
-                            href={company.websiteUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-3 rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-stone-100 text-slate-700 sm:h-10 sm:w-10">
-                                <ArrowUpRightIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">Website</span>
-                                <span className="block text-[13px] text-slate-600">{company.websiteLabel}</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Visit</span>
-                        </a>
+                        <div className="rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] sm:rounded-[1.2rem] sm:px-4 sm:py-4">
+                            <h3 className="font-semibold text-slate-950">What we do</h3>
+                            <ul className="mt-3 grid gap-2 text-[13px] leading-5 text-slate-600">
+                                <li>Yachts &amp; Automobiles</li>
+                                <li>Business Development &amp; Consultants</li>
+                                <li>Finance &amp; Loans</li>
+                                <li>Home, Business, Personal, Cars &amp; Yachts Loans</li>
+                                <li>Visa for Foreigners, Employment Passes, PR Application</li>
+                                <li>Open Business for Foreigners</li>
+                            </ul>
+                        </div>
 
-                        <a
-                            href={company.instagramUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-3 rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-stone-100 text-slate-700 sm:h-10 sm:w-10">
-                                <ArrowUpRightIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">Instagram</span>
-                                <span className="block text-[13px] text-slate-600">{company.instagramHandle}</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Open</span>
-                        </a>
-
-                        <a
-                            href={company.facebookUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-3 rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-stone-100 text-slate-700 sm:h-10 sm:w-10">
-                                <ArrowUpRightIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">Facebook</span>
-                                <span className="block text-[13px] text-slate-600">Robarol page</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Open</span>
-                        </a>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                            <a
+                                href={company.instagramUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 px-4 py-3 text-center text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50"
+                            >
+                                <InstagramIcon className="h-4 w-4" />
+                                Instagram
+                            </a>
+                            <a
+                                href={company.facebookUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 px-4 py-3 text-center text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50"
+                            >
+                                <FacebookIcon className="h-4 w-4" />
+                                Facebook
+                            </a>
+                        </div>
                     </aside>
 
                     <div className="rounded-[1.4rem] border border-stone-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:rounded-[1.7rem] sm:p-6 sm:shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
                         {isSubmitted ? (
                             <div className="rounded-[1.35rem] border border-emerald-200 bg-emerald-50 p-5 shadow-[0_10px_26px_rgba(5,150,105,0.08)]">
                                 <p className="text-base font-semibold text-emerald-800">
-                                    Your request is ready. Continue on WhatsApp or email.
+                                    Inquiry prepared successfully. You can continue on WhatsApp or email.
                                 </p>
                                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                                     <a
@@ -216,7 +205,7 @@ export function ContactPage() {
                                     Send request
                                 </h2>
                                 <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-                                    Share the listing or service you are interested in and Robarol will follow up directly.
+                                    Share your contact details and what you need help with.
                                 </p>
 
                                 <div className="mt-4 grid gap-3.5 sm:mt-5 sm:grid-cols-2 sm:gap-4">
@@ -261,15 +250,20 @@ export function ContactPage() {
                                         />
                                     </label>
                                     <label className="grid gap-1.5 text-sm text-slate-700 sm:col-span-2">
-                                        <span className="text-[13px] font-medium">Interested Listing / Service</span>
+                                        <span className="text-[13px] font-medium">What do you need help with?</span>
                                         <select
                                             value={formState.selectedListing}
                                             onChange={(event) => handleChange("selectedListing", event.target.value)}
                                             className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
                                         >
-                                            {interestOptions.map((option) => (
+                                            {serviceOptions.map((option) => (
                                                 <option key={option} value={option}>
                                                     {option}
+                                                </option>
+                                            ))}
+                                            {listings.map((listing) => (
+                                                <option key={listing.id} value={listing.title}>
+                                                    {listing.title}
                                                 </option>
                                             ))}
                                         </select>
@@ -291,7 +285,7 @@ export function ContactPage() {
                                         type="submit"
                                         className="inline-flex w-full items-center justify-center rounded-full bg-[#b54f32] px-5 py-2.5 text-[13px] font-semibold text-white shadow-[0_12px_30px_rgba(181,79,50,0.22)] transition duration-300 ease-out hover:brightness-[0.96] sm:w-auto sm:py-3 sm:text-sm"
                                     >
-                                        Submit Request
+                                        Submit Inquiry
                                     </button>
                                     <a
                                         href={whatsappLink}

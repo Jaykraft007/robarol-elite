@@ -43,18 +43,12 @@ export function SiteLayout() {
             <header className="sticky top-0 z-40 pt-2 sm:pt-3">
                 <div className="mx-auto w-[min(1200px,calc(100%-1rem))] sm:w-[min(1200px,calc(100%-1.5rem))]">
                     <div className="flex items-center justify-between rounded-[1.35rem] border border-stone-200 bg-white/92 px-4 py-3 shadow-[0_10px_28px_rgba(15,23,42,0.07)] backdrop-blur sm:rounded-[2rem] sm:px-6 sm:py-4 sm:shadow-[0_12px_36px_rgba(15,23,42,0.08)]">
-                        <NavLink to="/" className="flex min-w-0 items-center gap-3 sm:gap-5" onClick={() => setIsMenuOpen(false)}>
-                            <span className="grid size-9 place-items-center rounded-full bg-slate-950 font-display text-xs font-bold text-white shadow-[0_10px_18px_rgba(15,23,42,0.16)] sm:size-11 sm:text-sm sm:shadow-[0_12px_22px_rgba(15,23,42,0.18)]">
-                                RO
-                            </span>
-                            <span className="min-w-0">
-                                <span className="block truncate text-[12px] font-extrabold uppercase tracking-[0.2em] text-slate-950 sm:text-sm sm:tracking-[0.22em]">
-                                    {company.shortName}
-                                </span>
-                                <span className="hidden text-[11px] uppercase tracking-[0.18em] text-stone-500 sm:block">
-                                    {company.tagline}
-                                </span>
-                            </span>
+                        <NavLink to="/" className="flex min-w-0 items-center" onClick={() => setIsMenuOpen(false)}>
+                            <img
+                                src="/assets/robarol-logo.png"
+                                alt={`${company.name} logo`}
+                                className="h-11 w-auto max-w-[11rem] object-contain sm:h-14 sm:max-w-[14rem]"
+                            />
                         </NavLink>
 
                         <div className="flex items-center gap-2 md:hidden">
@@ -63,7 +57,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="rounded-full bg-[#b54f32] px-3.5 py-2 text-[12px] font-bold !text-white visited:!text-white hover:!text-white shadow-[0_10px_22px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Contact
+                                Inquiry
                             </NavLink>
                             <button
                                 type="button"
@@ -93,7 +87,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="rounded-full bg-[#b54f32] px-6 py-3.5 text-sm font-bold !text-white visited:!text-white hover:!text-white shadow-[0_12px_30px_rgba(181,79,50,0.22)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Contact Lats
+                                Start Inquiry
                             </NavLink>
                         </nav>
                     </div>
@@ -121,7 +115,7 @@ export function SiteLayout() {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="mt-1 inline-flex items-center justify-center rounded-[1rem] bg-[#b54f32] px-4 py-3 text-sm font-bold !text-white visited:!text-white hover:!text-white shadow-[0_10px_22px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:brightness-[0.96]"
                             >
-                                Contact Lats
+                                Start Inquiry
                             </NavLink>
                         </nav>
                     </div>
@@ -138,27 +132,26 @@ export function SiteLayout() {
                 <div className="mx-auto w-[min(1200px,calc(100%-1rem))] rounded-[1.45rem] border border-stone-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,246,240,0.94))] p-4 shadow-[0_12px_32px_rgba(15,23,42,0.05)] sm:w-[min(1200px,calc(100%-1.5rem))] sm:rounded-[1.75rem] sm:p-7 sm:shadow-[0_16px_44px_rgba(15,23,42,0.06)]">
                     <div className="grid gap-5 md:grid-cols-[1.25fr_0.7fr_0.8fr]">
                         <div>
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-stone-500">
-                                Direct Client Support
-                            </p>
-                            <h3 className="font-display mt-2.5 text-[1.55rem] text-slate-950 sm:mt-3 sm:text-3xl">{company.name}</h3>
-                            <p className="mt-2.5 max-w-xl text-[13px] leading-6 text-slate-600 sm:mt-3 sm:text-sm sm:leading-7">
+                            <img
+                                src="/assets/robarol-logo.png"
+                                alt={`${company.name} logo`}
+                                className="h-20 w-auto max-w-[18rem] object-contain sm:h-24 sm:max-w-[22rem]"
+                            />
+                            <p className="mt-4 max-w-xl text-[13px] leading-6 text-slate-600 sm:text-sm sm:leading-7">
                                 {company.description}
-                            </p>
-                            <p className="mt-2 text-[13px] font-medium text-slate-700 sm:text-sm">
-                                Direct contact: {company.contactName}
                             </p>
                         </div>
                         <div className="grid grid-cols-2 gap-5 md:contents">
                             <div>
                                 <h4 className="text-[12px] font-bold uppercase tracking-[0.22em] text-stone-500 sm:text-sm">
-                                    Explore
+                                    Menu
                                 </h4>
                                 <div className="mt-3 grid gap-2.5 text-[13px] text-slate-600 sm:mt-4 sm:gap-3 sm:text-sm">
-                                    <NavLink to="/inventory" className="transition hover:text-slate-950">Inventory</NavLink>
-                                    <NavLink to="/services" className="transition hover:text-slate-950">Services</NavLink>
-                                    <NavLink to="/finance" className="transition hover:text-slate-950">Finance</NavLink>
-                                    <NavLink to="/about" className="transition hover:text-slate-950">About</NavLink>
+                                    {navigation.map((link) => (
+                                        <NavLink key={link.to} to={link.to} end={link.to === "/"} className="transition hover:text-slate-950">
+                                            {link.label}
+                                        </NavLink>
+                                    ))}
                                 </div>
                             </div>
                             <div>
@@ -179,10 +172,10 @@ export function SiteLayout() {
                                         {company.instagramHandle}
                                     </a>
                                     <a href={company.facebookUrl} target="_blank" rel="noreferrer" className="transition hover:text-slate-950">
-                                        Facebook Page
+                                        Facebook
                                     </a>
                                     <NavLink to="/contact" className="transition hover:text-slate-950">
-                                        Contact Lats
+                                        Start inquiry
                                     </NavLink>
                                 </div>
                             </div>

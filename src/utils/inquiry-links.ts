@@ -22,9 +22,9 @@ export function buildMailtoLink(email: string, subject: string, body: string) {
 
 export function createInquiryMessage(payload: InquiryPayload) {
     const interestLine = payload.listingName === "General inquiry"
-        ? "I would like to make a general inquiry about your services."
+        ? "I would like to make a general inquiry."
         : payload.price && payload.price !== "Request pricing"
-            ? `I am interested in ${payload.listingName} listed at ${payload.price}.`
+            ? `I am interested in the ${payload.listingName} listed at ${payload.price}.`
             : `I am interested in ${payload.listingName}.`;
 
     return [

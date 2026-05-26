@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from "react";
 
 import { assetLibraryImages } from "./site-data.data";
-import { isPublicListing, sortListingsForPublic } from "./listing-helpers";
+import { listingCategoryOptions, isPublicListing, sortListingsForPublic } from "./listing-helpers";
 import {
     createListingRecord,
     deleteListingRecord,
@@ -35,8 +35,7 @@ interface SiteDataContextValue {
 
 const categories: Array<{ label: string; value: ListingFilter }> = [
     { label: "All", value: "all" },
-    { label: "Automobiles", value: "automobiles" },
-    { label: "Yachts", value: "yachts" }
+    ...listingCategoryOptions
 ];
 
 const SiteDataContext = createContext<SiteDataContextValue | null>(null);

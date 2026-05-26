@@ -8,7 +8,7 @@ interface FloatingChatButtonProps {
 export function FloatingChatButton({ phoneNumber }: FloatingChatButtonProps) {
     const href = buildWhatsAppLink(
         phoneNumber,
-        "Hello Robarol, I would like to learn more about your yachts, automobiles, finance or business support services."
+        "Hello Robarol, I would like to make an inquiry."
     );
 
     return (

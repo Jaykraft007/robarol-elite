@@ -4,8 +4,8 @@ import type { CompanyProfile, Listing, NavigationLink } from "./site-data.types"
 export const companyProfile: CompanyProfile = {
     name: "Robarol",
     shortName: "Robarol",
-    tagline: "Yachts, Automobiles, Finance & Foreigner Support",
-    description: "Robarol supports yacht and automobile clients with direct sourcing, loan guidance, visa support, PR applications and business setup help for foreigners.",
+    tagline: "Yachts & Automobiles",
+    description: "Yachts & automobiles, business development, finance & loans, and visa support for foreigners.",
     contactName: "Lats",
     email: "robarolsg@gmail.com",
     phone: "+65 8086 8730",
@@ -13,16 +13,16 @@ export const companyProfile: CompanyProfile = {
     websiteUrl: "https://www.robarol.com",
     websiteLabel: "www.robarol.com",
     instagramHandle: "@robarol.yachts.automobiles",
-    instagramUrl: "https://www.instagram.com/robarol.yachts.automobiles/",
+    instagramUrl: "https://www.instagram.com/robarol.yachts.automobiles?utm_source=qr&igsh=MTd5enpvNnR4NzZ2bg==",
     facebookUrl: "https://www.facebook.com/share/1GwiYxJVsW/"
 };
 
 export const navigationLinks: NavigationLink[] = [
     { label: "Home", to: "/" },
-    { label: "Inventory", to: "/inventory" },
+    { label: "Listings", to: "/inventory" },
     { label: "Services", to: "/services" },
     { label: "Finance", to: "/finance" },
-    { label: "About", to: "/about" }
+    { label: "Contact", to: "/contact" }
 ];
 
 export const assetLibraryImages = [

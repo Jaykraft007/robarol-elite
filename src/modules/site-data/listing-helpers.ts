@@ -169,8 +169,8 @@ function getTemplateIntentLine(listing: Pick<Listing, "title" | "status" | "inqu
     }
 }
 
-export function isPublicListing(listing: Pick<Listing, "showOnWebsite" | "status" | "category">) {
-    return listing.showOnWebsite && listing.status !== "hidden" && listing.category !== "properties";
+export function isPublicListing(listing: Pick<Listing, "showOnWebsite" | "status">) {
+    return listing.showOnWebsite && listing.status !== "hidden";
 }
 
 export function sortListingsForPublic(listings: Listing[]) {

@@ -49,29 +49,6 @@ export function PropertyIcon(props: SiteIconProps) {
     );
 }
 
-export function BankIcon(props: SiteIconProps) {
-    return (
-        <BaseIcon {...props}>
-            <path d="M4 10 12 5l8 5" />
-            <path d="M5.5 10.5h13" />
-            <path d="M7 10.5V18" />
-            <path d="M12 10.5V18" />
-            <path d="M17 10.5V18" />
-            <path d="M4 19h16" />
-        </BaseIcon>
-    );
-}
-
-export function BriefcaseIcon(props: SiteIconProps) {
-    return (
-        <BaseIcon {...props}>
-            <rect x="4" y="7" width="16" height="12" rx="2" />
-            <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
-            <path d="M4 11h16" />
-        </BaseIcon>
-    );
-}
-
 export function ArrowUpRightIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>
@@ -112,6 +89,24 @@ export function MailIcon(props: SiteIconProps) {
         <BaseIcon {...props}>
             <rect x="3" y="5" width="18" height="14" rx="2" />
             <path d="m4 7 8 6 8-6" />
+        </BaseIcon>
+    );
+}
+
+export function InstagramIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <rect x="4" y="4" width="16" height="16" rx="4" />
+            <circle cx="12" cy="12" r="3.5" />
+            <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+        </BaseIcon>
+    );
+}
+
+export function FacebookIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M14.5 8H17V4.5h-2.5c-3 0-4.5 1.8-4.5 4.7V12H7v3.5h3V20h3.8v-4.5H17L17.6 12h-3.8V9.6c0-1 .3-1.6 1.7-1.6Z" />
         </BaseIcon>
     );
 }
