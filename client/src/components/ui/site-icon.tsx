@@ -49,11 +49,60 @@ export function PropertyIcon(props: SiteIconProps) {
     );
 }
 
+export function BriefcaseIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <rect x="4" y="7" width="16" height="12" rx="2.5" />
+            <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+            <path d="M4 11.5h16" />
+        </BaseIcon>
+    );
+}
+
+export function WalletIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M5 8.5h12.5A1.5 1.5 0 0 1 19 10v8a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V8.5Z" />
+            <path d="M5 8.5V7A2 2 0 0 1 7 5h9" />
+            <path d="M19 12.5h-4a1.5 1.5 0 0 0 0 3h4" />
+        </BaseIcon>
+    );
+}
+
+export function GlobeIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <circle cx="12" cy="12" r="8" />
+            <path d="M4.5 9.5h15" />
+            <path d="M4.5 14.5h15" />
+            <path d="M12 4c2 2.2 3 5 3 8s-1 5.8-3 8c-2-2.2-3-5-3-8s1-5.8 3-8Z" />
+        </BaseIcon>
+    );
+}
+
 export function ArrowUpRightIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>
             <path d="M7 17 17 7" />
             <path d="M9 7h8v8" />
+        </BaseIcon>
+    );
+}
+
+export function CheckIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m5.5 12.5 4 4L18.5 7.5" />
+        </BaseIcon>
+    );
+}
+
+export function RowsIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M5 7.5h14" />
+            <path d="M5 12h14" />
+            <path d="M5 16.5h14" />
         </BaseIcon>
     );
 }
@@ -129,6 +178,34 @@ export function EyeIcon(props: SiteIconProps) {
     );
 }
 
+export function EyeOffIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="M3 3 21 21" />
+            <path d="M10.6 5.3A10.8 10.8 0 0 1 12 5.2c6 0 9.5 6 9.5 6a18.6 18.6 0 0 1-3.3 3.9" />
+            <path d="M6.2 6.3A18.8 18.8 0 0 0 2.5 12s3.5 6 9.5 6c1.2 0 2.3-.2 3.4-.6" />
+            <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+        </BaseIcon>
+    );
+}
+
+export function StarIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m12 4 2.5 5 5.5.8-4 3.8 1 5.4-5-2.6-5 2.6 1-5.4-4-3.8 5.5-.8L12 4Z" />
+        </BaseIcon>
+    );
+}
+
+export function CopyIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <rect x="9" y="9" width="10" height="10" rx="2" />
+            <rect x="5" y="5" width="10" height="10" rx="2" />
+        </BaseIcon>
+    );
+}
+
 export function PencilIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>
@@ -164,6 +241,22 @@ export function ChevronDownIcon(props: SiteIconProps) {
     return (
         <BaseIcon {...props}>
             <path d="m6 9 6 6 6-6" />
+        </BaseIcon>
+    );
+}
+
+export function ChevronLeftIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m15 6-6 6 6 6" />
+        </BaseIcon>
+    );
+}
+
+export function ChevronRightIcon(props: SiteIconProps) {
+    return (
+        <BaseIcon {...props}>
+            <path d="m9 6 6 6-6 6" />
         </BaseIcon>
     );
 }

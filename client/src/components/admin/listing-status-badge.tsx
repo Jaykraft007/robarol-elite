@@ -10,7 +10,7 @@ export function ListingStatusBadge({ status, className = "" }: ListingStatusBadg
     return (
         <span
             className={[
-                "inline-flex rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]",
+                "inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em]",
                 listingStatusMeta[status].badgeClassName,
                 className
             ].join(" ")}

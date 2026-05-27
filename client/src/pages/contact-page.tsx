@@ -1,10 +1,9 @@
 import { useMemo, useState, type FormEvent } from "react";
 
-import { ApiError } from "../modules/core/api-client";
-import { PageHero } from "../components/ui/page-hero";
 import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, WhatsappIcon } from "../components/ui/site-icon";
-import { useSiteData } from "../modules/site-data/site-data.context";
+import { ApiError } from "../modules/core/api-client";
 import { formatListingPrice } from "../modules/site-data/listing-helpers";
+import { useSiteData } from "../modules/site-data/site-data.context";
 import { buildMailtoLink, buildWhatsAppLink, createInquiryMessage } from "../utils/inquiry-links";
 
 interface ContactFormState {
@@ -36,17 +35,10 @@ export function ContactPage() {
 
     const serviceOptions = [
         "General inquiry",
-        "Yachts & Automobiles",
-        "Business Development & Consulting",
-        "Finance & Loans",
-        "Home Loans",
-        "Business Loans",
-        "Personal Loans",
-        "Cars & Yachts Loans",
-        "Visa for Foreigners",
-        "Employment Passes",
-        "PR Application",
-        "Open Business for Foreigners"
+        "Automobile sourcing",
+        "Finance & loan support",
+        "Business assistance",
+        "Visa & relocation support"
     ];
 
     const selectedListing = listings.find((listing) => listing.title === formState.selectedListing);
@@ -100,89 +92,98 @@ export function ContactPage() {
 
     return (
         <>
-            <PageHero
-                eyebrow="Contact"
-                title={`Contact ${company.contactName}`}
-                description="Yachts & automobiles, business development, finance & loans, and support for foreigners."
-            />
+            <section className="pt-2.5 sm:pt-4">
+                <div className="mx-auto w-[min(1120px,calc(100%-1rem))] sm:w-[min(1120px,calc(100%-1.5rem))]">
+                    <div className="max-w-[40rem]">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-500">
+                            Contact
+                        </p>
+                        <h1 className="font-hero-display mt-2 text-[1.6rem] leading-[1.02] text-slate-950 sm:text-[2.2rem] lg:text-[2.7rem]">
+                            Contact & inquiry.
+                        </h1>
+                        <p className="mt-3 max-w-[34rem] text-sm leading-6 text-slate-600 sm:text-[0.98rem] sm:leading-7">
+                            Reach out for listings, sourcing, finance or support.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-            <section className="pb-7 pt-3 sm:pb-10 sm:pt-4">
-                <div className="mx-auto grid w-[min(1200px,calc(100%-1rem))] gap-4 sm:w-[min(1200px,calc(100%-1.5rem))] sm:gap-5 lg:grid-cols-[0.88fr_1.12fr]">
-                    <aside className="grid gap-3.5 rounded-[1.4rem] border border-stone-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.99),rgba(250,246,238,0.94))] p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:rounded-[1.7rem] sm:gap-4 sm:p-6 sm:shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
+            <section className="pb-7 pt-4 sm:pb-9 sm:pt-5">
+                <div className="mx-auto grid w-[min(1120px,calc(100%-1rem))] gap-4 sm:w-[min(1120px,calc(100%-1.5rem))] sm:gap-5 lg:grid-cols-[0.94fr_1.06fr]">
+                    <aside className="rounded-[1.35rem] border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,246,240,0.95))] p-4 shadow-[0_12px_28px_rgba(15,23,42,0.05)] sm:rounded-[1.55rem] sm:p-5">
                         <div>
                             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500">
-                                Contact
+                                Direct Contact
                             </p>
-                            <h2 className="font-display mt-2 text-[1.45rem] leading-tight text-slate-950 sm:text-[1.85rem]">
+                            <h2 className="font-hero-display mt-2 text-[1.3rem] leading-tight text-slate-950 sm:text-[1.55rem]">
                                 {company.contactName} (Robarol)
                             </h2>
-                            <p className="mt-1.5 text-sm leading-6 text-slate-600 sm:mt-2">
-                                Yachts & automobiles, finance & loans, business development and support for foreigners.
-                            </p>
                         </div>
 
-                        <a
-                            href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol, I would like to make an inquiry.")}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-3 rounded-[1rem] border border-emerald-200 bg-emerald-50 px-3.5 py-3 text-sm text-emerald-800 shadow-[0_8px_20px_rgba(5,150,105,0.08)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-600 text-white sm:h-10 sm:w-10">
-                                <WhatsappIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">WhatsApp</span>
-                                <span className="block text-[13px] text-emerald-700">{company.phone}</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">Open</span>
-                        </a>
+                        <div className="mt-4">
+                            <a
+                                href={buildWhatsAppLink(company.whatsappNumber, "Hello Robarol, I would like to make an inquiry.")}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex items-center gap-3 rounded-[1.1rem] border border-emerald-200/80 bg-emerald-50/92 px-3.5 py-3.5 text-sm text-emerald-800 shadow-[0_10px_24px_rgba(5,150,105,0.07)] transition duration-300 ease-out hover:-translate-y-0.5"
+                            >
+                                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-600 text-white shadow-[0_10px_20px_rgba(22,163,74,0.18)]">
+                                    <WhatsappIcon className="h-4 w-4" />
+                                </span>
+                                <span className="min-w-0 flex-1">
+                                    <span className="block font-semibold">WhatsApp</span>
+                                    <span className="block text-[13px] text-emerald-700">{company.phone}</span>
+                                </span>
+                                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Open</span>
+                            </a>
+                        </div>
 
-                        <a
-                            href={`tel:${company.phone.replace(/\s+/g, "")}`}
-                            className="flex items-center gap-3 rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-stone-100 text-slate-700 sm:h-10 sm:w-10">
-                                <PhoneIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">Phone</span>
-                                <span className="block text-[13px] text-slate-600">{company.phone}</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Call</span>
-                        </a>
+                        <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                            <a
+                                href={`tel:${company.phone.replace(/\s+/g, "")}`}
+                                className="flex items-center gap-3 rounded-[1rem] border border-stone-200/75 bg-white/84 px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_18px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5"
+                            >
+                                <span className="inline-flex h-[2.125rem] w-[2.125rem] items-center justify-center rounded-full bg-stone-100 text-slate-700">
+                                    <PhoneIcon className="h-4 w-4" />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="block font-semibold">Phone</span>
+                                    <span className="block text-[13px] text-slate-600">{company.phone}</span>
+                                </span>
+                            </a>
 
-                        <a
-                            href={`mailto:${company.email}`}
-                            className="flex items-center gap-3 rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5 sm:rounded-[1.2rem] sm:px-4 sm:py-3.5"
-                        >
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-stone-100 text-slate-700 sm:h-10 sm:w-10">
-                                <MailIcon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                                <span className="block font-semibold">Email</span>
-                                <span className="block text-[13px] text-slate-600">{company.email}</span>
-                            </span>
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Send</span>
-                        </a>
+                            <a
+                                href={`mailto:${company.email}`}
+                                className="flex items-center gap-3 rounded-[1rem] border border-stone-200/75 bg-white/84 px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_18px_rgba(15,23,42,0.04)] transition duration-300 ease-out hover:-translate-y-0.5"
+                            >
+                                <span className="inline-flex h-[2.125rem] w-[2.125rem] items-center justify-center rounded-full bg-stone-100 text-slate-700">
+                                    <MailIcon className="h-4 w-4" />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="block font-semibold">Email</span>
+                                    <span className="block text-[13px] text-slate-600">{company.email}</span>
+                                </span>
+                            </a>
+                        </div>
 
-                        <div className="rounded-[1rem] border border-stone-200/70 bg-white px-3.5 py-3 text-sm text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.04)] sm:rounded-[1.2rem] sm:px-4 sm:py-4">
-                            <h3 className="font-semibold text-slate-950">What we do</h3>
+                        <div className="mt-4 border-t border-stone-200/80 pt-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500">
+                                Support Areas
+                            </p>
                             <ul className="mt-3 grid gap-2 text-[13px] leading-5 text-slate-600">
-                                <li>Yachts &amp; Automobiles</li>
-                                <li>Business Development &amp; Consultants</li>
-                                <li>Finance &amp; Loans</li>
-                                <li>Home, Business, Personal, Cars &amp; Yachts Loans</li>
-                                <li>Visa for Foreigners, Employment Passes, PR Application</li>
-                                <li>Open Business for Foreigners</li>
+                                <li>Automobile sourcing</li>
+                                <li>Finance &amp; loan support</li>
+                                <li>Business assistance</li>
+                                <li>Visa &amp; relocation support</li>
                             </ul>
                         </div>
 
-                        <div className="grid gap-2 sm:grid-cols-2">
+                        <div className="mt-4 flex gap-2.5">
                             <a
                                 href={company.instagramUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 px-4 py-3 text-center text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50"
+                                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-950 hover:bg-stone-50"
                             >
                                 <InstagramIcon className="h-4 w-4" />
                                 Instagram
@@ -191,7 +192,7 @@ export function ContactPage() {
                                 href={company.facebookUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 px-4 py-3 text-center text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:border-slate-950 hover:bg-stone-50"
+                                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-950 hover:bg-stone-50"
                             >
                                 <FacebookIcon className="h-4 w-4" />
                                 Facebook
@@ -199,25 +200,28 @@ export function ContactPage() {
                         </div>
                     </aside>
 
-                    <div className="rounded-[1.4rem] border border-stone-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:rounded-[1.7rem] sm:p-6 sm:shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
+                    <div className="rounded-[1.35rem] border border-stone-200/80 bg-white/92 p-4 shadow-[0_12px_28px_rgba(15,23,42,0.05)] sm:rounded-[1.55rem] sm:p-5 lg:p-6">
                         {isSubmitted ? (
-                            <div className="rounded-[1.35rem] border border-emerald-200 bg-emerald-50 p-5 shadow-[0_10px_26px_rgba(5,150,105,0.08)]">
-                                <p className="text-base font-semibold text-emerald-800">
-                                    Inquiry prepared successfully. You can continue on WhatsApp or email.
+                            <div className="rounded-[1.2rem] border border-emerald-200/85 bg-emerald-50/92 p-4 shadow-[0_10px_22px_rgba(5,150,105,0.07)] sm:p-5">
+                                <p className="font-hero-display text-[1.2rem] leading-tight text-emerald-900 sm:text-[1.35rem]">
+                                    Inquiry prepared successfully.
                                 </p>
-                                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                                <p className="mt-2 text-sm leading-6 text-emerald-800">
+                                    Continue on WhatsApp or send the request by email.
+                                </p>
+                                <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
                                     <a
                                         href={whatsappLink}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold !text-white transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-emerald-700 hover:!text-white"
                                     >
                                         <WhatsappIcon className="h-4 w-4" />
                                         Continue on WhatsApp
                                     </a>
                                     <a
                                         href={mailtoLink}
-                                        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-950 sm:w-auto"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-950"
                                     >
                                         <MailIcon className="h-4 w-4" />
                                         Send by Email
@@ -226,14 +230,16 @@ export function ContactPage() {
                             </div>
                         ) : (
                             <form onSubmit={(event) => void handleSubmit(event)}>
-                                <h2 className="font-display text-[1.45rem] leading-tight text-slate-950 sm:text-[1.85rem]">
-                                    Send request
-                                </h2>
-                                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-                                    Share your contact details and what you need help with.
-                                </p>
+                                <div>
+                                    <h2 className="font-hero-display text-[1.3rem] leading-tight text-slate-950 sm:text-[1.55rem]">
+                                        Submit inquiry
+                                    </h2>
+                                    <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
+                                        Share your details and what you need help with.
+                                    </p>
+                                </div>
 
-                                <div className="mt-4 grid gap-3.5 sm:mt-5 sm:grid-cols-2 sm:gap-4">
+                                <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-3.5">
                                     <label className="grid gap-1.5 text-sm text-slate-700">
                                         <span className="text-[13px] font-medium">Full Name</span>
                                         <input
@@ -241,7 +247,7 @@ export function ContactPage() {
                                             required
                                             value={formState.fullName}
                                             onChange={(event) => handleChange("fullName", event.target.value)}
-                                            className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
+                                            className="h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         />
                                     </label>
                                     <label className="grid gap-1.5 text-sm text-slate-700">
@@ -251,7 +257,7 @@ export function ContactPage() {
                                             required
                                             value={formState.email}
                                             onChange={(event) => handleChange("email", event.target.value)}
-                                            className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
+                                            className="h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         />
                                     </label>
                                     <label className="grid gap-1.5 text-sm text-slate-700">
@@ -261,7 +267,7 @@ export function ContactPage() {
                                             required
                                             value={formState.phone}
                                             onChange={(event) => handleChange("phone", event.target.value)}
-                                            className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
+                                            className="h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         />
                                     </label>
                                     <label className="grid gap-1.5 text-sm text-slate-700">
@@ -271,7 +277,7 @@ export function ContactPage() {
                                             required
                                             value={formState.location}
                                             onChange={(event) => handleChange("location", event.target.value)}
-                                            className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
+                                            className="h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         />
                                     </label>
                                     <label className="grid gap-1.5 text-sm text-slate-700 sm:col-span-2">
@@ -279,7 +285,7 @@ export function ContactPage() {
                                         <select
                                             value={formState.selectedListing}
                                             onChange={(event) => handleChange("selectedListing", event.target.value)}
-                                            className="min-h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-12 sm:rounded-[1rem] sm:py-3"
+                                            className="h-11 rounded-[0.95rem] border border-stone-300 bg-white px-4 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         >
                                             {serviceOptions.map((option) => (
                                                 <option key={option} value={option}>
@@ -296,11 +302,11 @@ export function ContactPage() {
                                     <label className="grid gap-1.5 text-sm text-slate-700 sm:col-span-2">
                                         <span className="text-[13px] font-medium">Message</span>
                                         <textarea
-                                            rows={6}
+                                            rows={5}
                                             required
                                             value={formState.message}
                                             onChange={(event) => handleChange("message", event.target.value)}
-                                            className="min-h-28 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-2.5 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8 sm:min-h-32 sm:rounded-[1rem] sm:py-3"
+                                            className="min-h-28 rounded-[0.95rem] border border-stone-300 bg-white px-4 py-3 text-slate-950 outline-none transition duration-300 focus:border-[#b54f32] focus:ring-4 focus:ring-[#b54f32]/8"
                                         />
                                     </label>
                                 </div>
@@ -311,11 +317,11 @@ export function ContactPage() {
                                     </div>
                                 ) : null}
 
-                                <div className="mt-5 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:gap-3">
+                                <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="inline-flex w-full items-center justify-center rounded-full bg-[#b54f32] px-5 py-2.5 text-[13px] font-semibold text-white shadow-[0_12px_30px_rgba(181,79,50,0.22)] transition duration-300 ease-out hover:brightness-[0.96] sm:w-auto sm:py-3 sm:text-sm"
+                                        className="inline-flex items-center justify-center rounded-full bg-[#b54f32] px-5 py-2.5 text-sm font-semibold !text-white shadow-[0_12px_26px_rgba(181,79,50,0.18)] transition duration-300 ease-out hover:-translate-y-0.5 hover:brightness-[0.97] hover:!text-white"
                                     >
                                         {isSubmitting ? "Submitting..." : "Submit Inquiry"}
                                     </button>
@@ -323,7 +329,7 @@ export function ContactPage() {
                                         href={whatsappLink}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2.5 text-[13px] font-semibold text-emerald-700 transition duration-300 ease-out hover:bg-emerald-100 sm:w-auto sm:py-3 sm:text-sm"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-200/85 bg-emerald-50/75 px-5 py-2.5 text-sm font-semibold text-emerald-700 transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-emerald-100/80"
                                     >
                                         <WhatsappIcon className="h-4 w-4" />
                                         Continue on WhatsApp

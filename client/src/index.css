@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -56,6 +57,15 @@ textarea {
 .font-display {
     font-family: "Sora", sans-serif;
     letter-spacing: -0.04em;
+}
+
+.font-hero-display {
+    font-family: "Satoshi", "Sora", sans-serif;
+    letter-spacing: -0.045em;
+}
+
+.font-ui-body {
+    font-family: "Inter", "Outfit", sans-serif;
 }
 
 .luxury-modal-scroll {
