@@ -38,7 +38,8 @@ export function ContactPage() {
         "Automobile sourcing",
         "Finance & loan support",
         "Business assistance",
-        "Visa & relocation support"
+        "Visa & relocation support",
+        "Swimming & personal training"
     ];
 
     const selectedListing = listings.find((listing) => listing.title === formState.selectedListing);
@@ -175,7 +176,20 @@ export function ContactPage() {
                                 <li>Finance &amp; loan support</li>
                                 <li>Business assistance</li>
                                 <li>Visa &amp; relocation support</li>
+                                <li>Swimming &amp; personal training</li>
                             </ul>
+                        </div>
+
+                        <div className="mt-4 border-t border-stone-200/80 pt-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500">
+                                Training Rates
+                            </p>
+                            <div className="mt-3 grid gap-2 text-[13px] leading-5 text-slate-600">
+                                <p>Competitive swimming training: <span className="font-semibold text-slate-900">$250/hr</span></p>
+                                <p>Beginner swimming: <span className="font-semibold text-slate-900">$350 for 5 sessions</span></p>
+                                <p>Personal training for models: <span className="font-semibold text-slate-900">$200/hr</span></p>
+                                <p>Regular personal training: <span className="font-semibold text-slate-900">$90/hr</span></p>
+                            </div>
                         </div>
 
                         <div className="mt-4 flex gap-2.5">

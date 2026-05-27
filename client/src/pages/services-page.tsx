@@ -26,6 +26,12 @@ const serviceCards = [
         description: "Visa, employment pass, PR and foreign business setup support.",
         Icon: GlobeIcon,
         className: "lg:col-span-7"
+    },
+    {
+        title: "Swimming Coaching and Fitness Training",
+        description: "Competitive swimming, beginner swimming sessions, model personal training and regular personal training.",
+        Icon: BriefcaseIcon,
+        className: "lg:col-span-12"
     }
 ] as const;
 
@@ -77,6 +83,23 @@ export function ServicesPage() {
                                 <p className="mt-2.5 max-w-[32ch] text-sm leading-6 text-slate-600">
                                     {description}
                                 </p>
+                                {title === "Swimming Coaching and Fitness Training" ? (
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        {[
+                                            "Competitive swimming: $250/hr",
+                                            "Beginner swimming: $350 for 5 sessions",
+                                            "Model personal training: $200/hr",
+                                            "Regular personal training: $90/hr"
+                                        ].map((rate) => (
+                                            <span
+                                                key={rate}
+                                                className="rounded-full border border-stone-200 bg-white/80 px-3 py-1.5 text-[12px] font-medium text-slate-700"
+                                            >
+                                                {rate}
+                                            </span>
+                                        ))}
+                                    </div>
+                                ) : null}
                             </article>
                         ))}
                     </div>

@@ -91,18 +91,32 @@ export function HomePage() {
 
                         <div className="relative z-10 flex w-full max-w-[35rem] flex-col items-center pr-2 pb-[10.5rem] pt-10 text-center sm:pr-4 sm:pb-[12rem] sm:pt-0 lg:min-h-[74vh] lg:items-start lg:pb-0 lg:pr-0 lg:text-left">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ab6b54] sm:text-[11px]">
-                                VERIFIED PREMIUM LISTINGS
+                                DIRECT SOURCING & SUPPORT
                             </p>
-                            <h1 className="font-hero-display mt-4 max-w-[11ch] text-[2.2rem] leading-[0.98] text-slate-950 sm:mt-5 sm:text-[3.45rem] lg:text-[4.4rem]">
-                                Premium assets.
-                                <br />
-                                Exceptional lifestyle.
+                            <h1 className="font-hero-display mt-4 max-w-[12ch] text-[2.2rem] leading-[0.98] text-slate-950 sm:mt-5 sm:text-[3.45rem] lg:text-[4.4rem]">
+                                Robarol Yachts & Automobiles.
                             </h1>
-                            <p className="mt-4 max-w-[33rem] text-[15px] leading-7 text-slate-600 sm:mt-5 sm:text-[1.02rem] sm:leading-8">
+                            
+                            <div className="mt-4 flex max-w-[34rem] flex-wrap justify-center gap-1 lg:justify-start">
+                                {[
+                                    "Yachts & automobiles",
+                                    "Finance & Loans",
+                                    "Business Consulting",
+                                    "Visa, EP & PR support"
+                                ].map((item) => (
+                                    <span
+                                        key={item}
+                                        className="rounded-full border border-stone-200/80 bg-white/72 px-3 py-1.5 text-[12px] font-medium text-slate-700 shadow-[0_8px_18px_rgba(15,23,42,0.035)]"
+                                    >
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                            <p className="mt-4 max-w-[34rem] text-[15px] leading-7 text-slate-600 sm:mt-5 sm:text-[1.02rem] sm:leading-8">
                                 Browse verified listings with clear pricing, key details and direct inquiry.
                             </p>
 
-                            <div className="mt-8 w-full sm:w-auto">
+                            <div className="mt-7 w-full sm:w-auto">
                                 <NavLink
                                     to="/inventory"
                                     className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b54f32] px-6 py-4 text-sm font-semibold !text-white shadow-[0_14px_30px_rgba(181,79,50,0.2)] transition duration-300 ease-out hover:-translate-y-0.5 hover:brightness-[0.98] hover:!text-white visited:!text-white sm:w-auto sm:px-7"
