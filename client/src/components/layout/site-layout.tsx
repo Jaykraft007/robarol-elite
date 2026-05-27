@@ -65,7 +65,7 @@ export function SiteLayout() {
                             <img
                                 src="/assets/robarol-logo.png"
                                 alt={`${company.name} logo`}
-                                className="h-12 w-auto max-w-[11.75rem] object-contain sm:h-[3.2rem] sm:max-w-[14rem]"
+                                className="h-14 w-auto max-w-[13rem] object-contain sm:h-[3.75rem] sm:max-w-[15.5rem]"
                             />
                         </NavLink>
 
