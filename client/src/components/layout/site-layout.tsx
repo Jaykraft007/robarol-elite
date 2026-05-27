@@ -24,7 +24,7 @@ function mobileNavLinkClassName(isActive: boolean) {
 }
 
 export function SiteLayout() {
-    const { company, navigation, isLoading } = useSiteData();
+    const { company, navigation } = useSiteData();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
 
@@ -44,7 +44,7 @@ export function SiteLayout() {
         };
     }, [isMenuOpen]);
 
-    if (isLoading || !company) {
+    if (!company) {
         return (
             <div className="flex min-h-screen items-center justify-center px-6">
                 <div className="rounded-full border border-stone-200 bg-white px-6 py-3 text-sm uppercase tracking-[0.24em] text-stone-500 shadow-sm">

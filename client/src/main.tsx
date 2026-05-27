@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router/dom";
 
 import { router } from "./app/router";
-import { AdminSessionProvider } from "./modules/admin-session/admin-session.context";
 import "./index.css";
 
 const rootElement = document.getElementById("root");
@@ -14,8 +13,6 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
     <StrictMode>
-        <AdminSessionProvider>
-            <RouterProvider router={router} />
-        </AdminSessionProvider>
+        <RouterProvider router={router} />
     </StrictMode>
 );

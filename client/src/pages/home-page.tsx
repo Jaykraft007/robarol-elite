@@ -10,7 +10,7 @@ import { useSiteData } from "../modules/site-data/site-data.context";
 import type { Listing, ListingCategory } from "../modules/site-data/site-data.types";
 
 export function HomePage() {
-    const { company, featuredListings, getListingsByCategory } = useSiteData();
+    const { company, featuredListings, getListingsByCategory, isLoading } = useSiteData();
     const [activeCategory, setActiveCategory] = useState<"all" | ListingCategory>("all");
     const [activeListing, setActiveListing] = useState<Listing | null>(null);
     const [inquiryListing, setInquiryListing] = useState<Listing | null>(null);
@@ -179,7 +179,7 @@ export function HomePage() {
 
                                     <div className="mt-4 flex items-center justify-between gap-3">
                                         <span className="text-[12px] font-medium text-white/80 sm:text-[13px]">
-                                            {getListingsByCategory(item.category).length} listings
+                                            {isLoading ? "Loading..." : `${getListingsByCategory(item.category).length} listings`}
                                         </span>
                                         <span className="inline-flex items-center gap-1.5 rounded-full bg-[#b54f32]/92 px-3 py-2 text-[11px] font-semibold text-white shadow-[0_10px_24px_rgba(181,79,50,0.18)] transition duration-300 ease-out group-hover:bg-[#b54f32] sm:text-[12px]">
                                             View Listings
@@ -226,16 +226,22 @@ export function HomePage() {
                         </div>
                     </div>
 
-                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
-                        {visibleListings.map((listing) => (
-                            <ListingCard
-                                key={listing.id}
-                                listing={listing}
-                                onViewDetails={setActiveListing}
-                                onEnquire={openInquiry}
-                            />
-                        ))}
-                    </div>
+                    {isLoading && visibleListings.length === 0 ? (
+                        <div className="rounded-[1.45rem] border border-stone-200 bg-white/92 p-5 text-center shadow-[0_14px_32px_rgba(15,23,42,0.06)] sm:p-7">
+                            <p className="text-sm text-slate-600">Loading listings...</p>
+                        </div>
+                    ) : (
+                        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
+                            {visibleListings.map((listing) => (
+                                <ListingCard
+                                    key={listing.id}
+                                    listing={listing}
+                                    onViewDetails={setActiveListing}
+                                    onEnquire={openInquiry}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 

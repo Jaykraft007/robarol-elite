@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { AdminRouteGuard } from "../components/admin/admin-route-guard";
 import { AdminLayout } from "../components/admin/admin-layout";
 import { SiteLayout } from "../components/layout/site-layout";
+import { AdminSessionProvider } from "../modules/admin-session/admin-session.context";
 import { SiteDataProvider } from "../modules/site-data/site-data.context";
 import { AdminListingFormPage } from "../pages/admin-listing-form-page";
 import { AdminInquiriesPage } from "../pages/admin-inquiries-page";
@@ -27,11 +28,13 @@ function AppRoot() {
 
 function AdminRoot() {
     return (
-        <AdminRouteGuard>
-            <SiteDataProvider scope="admin">
-                <AdminLayout />
-            </SiteDataProvider>
-        </AdminRouteGuard>
+        <AdminSessionProvider>
+            <AdminRouteGuard>
+                <SiteDataProvider scope="admin">
+                    <AdminLayout />
+                </SiteDataProvider>
+            </AdminRouteGuard>
+        </AdminSessionProvider>
     );
 }
 
@@ -50,11 +53,19 @@ export const router = createBrowserRouter([
     },
     {
         path: "/admin/login",
-        element: <AdminLoginPage />
+        element: (
+            <AdminSessionProvider>
+                <AdminLoginPage />
+            </AdminSessionProvider>
+        )
     },
     {
         path: "/admin/signup",
-        element: <AdminSignupPage />
+        element: (
+            <AdminSessionProvider>
+                <AdminSignupPage />
+            </AdminSessionProvider>
+        )
     },
     {
         path: "/admin",

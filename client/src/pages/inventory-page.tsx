@@ -17,7 +17,7 @@ import { formatListingPrice } from "../modules/site-data/listing-helpers";
 import type { Listing, ListingCategory, ListingStatus } from "../modules/site-data/site-data.types";
 
 export function InventoryPage() {
-    const { categories, company, getListingsByCategory } = useSiteData();
+    const { categories, company, getListingsByCategory, isLoading } = useSiteData();
     const [searchParams, setSearchParams] = useSearchParams();
     const categoryParam = searchParams.get("category");
     const defaultCategory = categories.some((item) => item.value === categoryParam)
@@ -165,7 +165,11 @@ export function InventoryPage() {
 
             <section className="pb-8 pt-1 sm:pb-10">
                 <div className="mx-auto w-[min(1120px,calc(100%-1rem))] sm:w-[min(1120px,calc(100%-1.5rem))]">
-                    {listings.length > 0 ? (
+                    {isLoading && listings.length === 0 ? (
+                        <div className="rounded-[1.45rem] border border-stone-200 bg-white/92 p-5 text-center shadow-[0_14px_32px_rgba(15,23,42,0.06)] sm:p-7">
+                            <p className="text-sm text-slate-600">Loading listings...</p>
+                        </div>
+                    ) : listings.length > 0 ? (
                         <div className="space-y-6 sm:space-y-8">
                             {featuredListing && featuredCategoryMeta ? (
                                 <div>
