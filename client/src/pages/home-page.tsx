@@ -89,7 +89,7 @@ export function HomePage() {
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,249,242,0.1)_0%,rgba(255,249,242,0)_26%,rgba(255,249,242,0.14)_100%)]" />
                         </div>
 
-                        <div className="relative z-10 flex w-full max-w-[35rem] flex-col items-center pr-2 pb-[10.5rem] pt-8 text-center sm:pr-4 sm:pb-[12rem] sm:pt-0 lg:min-h-[74vh] lg:items-start lg:pb-0 lg:pr-0 lg:text-left">
+                        <div className="relative z-10 flex w-full max-w-[35rem] flex-col items-center pr-2 pb-[10.5rem] pt-10 text-center sm:pr-4 sm:pb-[12rem] sm:pt-0 lg:min-h-[74vh] lg:items-start lg:pb-0 lg:pr-0 lg:text-left">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ab6b54] sm:text-[11px]">
                                 VERIFIED PREMIUM LISTINGS
                             </p>
