@@ -12,6 +12,7 @@ import { AdminListingsPage } from "../pages/admin-listings-page";
 import { AdminSignupPage } from "../pages/admin-signup-page";
 import { AboutPage } from "../pages/about-page";
 import { ContactPage } from "../pages/contact-page";
+import { FitnessPage } from "../pages/fitness-page";
 import { FinancePage } from "../pages/finance-page";
 import { HomePage } from "../pages/home-page";
 import { InventoryPage } from "../pages/inventory-page";
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             { path: "inventory", element: <InventoryPage /> },
             { path: "services", element: <ServicesPage /> },
+            { path: "fitness", element: <FitnessPage /> },
             { path: "finance", element: <FinancePage /> },
             { path: "about", element: <AboutPage /> },
             { path: "contact", element: <ContactPage /> }

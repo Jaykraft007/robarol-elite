@@ -20,6 +20,7 @@ export const navigationLinks: NavigationLink[] = [
     { label: "Home", to: "/" },
     { label: "Listings", to: "/inventory" },
     { label: "Services", to: "/services" },
+    { label: "Fitness", to: "/fitness" },
     { label: "Finance", to: "/finance" },
     { label: "Contact", to: "/contact" }
 ];

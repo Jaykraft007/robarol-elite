@@ -89,15 +89,22 @@ export function HomePage() {
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,249,242,0.1)_0%,rgba(255,249,242,0)_26%,rgba(255,249,242,0.14)_100%)]" />
                         </div>
 
-                        <div className="relative z-10 flex w-full max-w-[35rem] flex-col items-center pr-2 pb-[10.5rem] pt-10 text-center sm:pr-4 sm:pb-[12rem] sm:pt-0 lg:min-h-[74vh] lg:items-start lg:pb-0 lg:pr-0 lg:text-left">
+                        <div className="relative z-10 flex w-full max-w-[35rem] flex-col items-center pr-2 pb-[10.5rem] pt-10 text-center sm:pr-4 sm:pb-[12rem] sm:pt-0 md:items-start md:text-left lg:min-h-[74vh] lg:pb-0 lg:pr-0">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ab6b54] sm:text-[11px]">
                                 DIRECT SOURCING & SUPPORT
                             </p>
-                            <h1 className="font-hero-display mt-4 max-w-[12ch] text-[2.2rem] leading-[0.98] text-slate-950 sm:mt-5 sm:text-[3.45rem] lg:text-[4.4rem]">
+                            {/* <h1 className="font-hero-display mt-4 max-w-[12ch] text-[2.2rem] leading-[0.98] text-slate-950 sm:mt-5 sm:text-[3.45rem] lg:text-[4.4rem]">
                                 Robarol Yachts & Automobiles.
-                            </h1>
+                            </h1> */}
+                            <div className="mt-4 w-full max-w-[15.5rem] self-center sm:mt-5 sm:max-w-[21.5rem] md:self-start lg:max-w-[26rem] xl:max-w-[28rem]">
+                                <img
+                                    src="/assets/robarol-logo.png"
+                                    alt="Robarol logo"
+                                    className="mx-auto md:mx-0 h-auto max-h-[7.5rem] w-auto object-contain sm:max-h-[7.9rem] md:max-h-[8.8rem] lg:max-h-[10rem] xl:max-h-[10.8rem]"
+                                />
+                            </div>
                             
-                            <div className="mt-4 flex max-w-[34rem] flex-wrap justify-center gap-1 lg:justify-start">
+                            <div className="mt-4 flex max-w-[34rem] flex-wrap justify-center gap-1 md:justify-start">
                                 {[
                                     "Yachts & automobiles",
                                     "Finance & Loans",
@@ -124,7 +131,7 @@ export function HomePage() {
                                     View Listings
                                     <ArrowUpRightIcon className="h-4 w-4" />
                                 </NavLink>
-                                <div className="mt-4 flex items-center justify-center gap-2.5 text-sm text-slate-600 lg:justify-start">
+                                <div className="mt-4 flex items-center justify-center gap-2.5 text-sm text-slate-600 md:justify-start">
                                     <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white/88 text-[#b54f32] shadow-[0_6px_14px_rgba(15,23,42,0.04)]">
                                         <CheckIcon className="h-3.5 w-3.5" />
                                     </span>

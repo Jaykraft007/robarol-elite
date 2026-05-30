@@ -2,7 +2,15 @@ import { NavLink } from "react-router";
 
 import { ArrowUpRightIcon, BriefcaseIcon, CarIcon, GlobeIcon, WalletIcon } from "../components/ui/site-icon";
 
-const serviceCards = [
+interface ServiceCard {
+    title: string;
+    description: string;
+    Icon: typeof CarIcon;
+    className: string;
+    to?: string;
+}
+
+const serviceCards: ServiceCard[] = [
     {
         title: "Yachts & Automobiles",
         description: "Direct sourcing and support for selected automobile and yacht inquiries.",
@@ -31,7 +39,8 @@ const serviceCards = [
         title: "Swimming Coaching and Fitness Training",
         description: "Competitive swimming, beginner swimming sessions, model personal training and regular personal training.",
         Icon: BriefcaseIcon,
-        className: "lg:col-span-12"
+        className: "lg:col-span-12",
+        to: "/fitness"
     }
 ] as const;
 
@@ -48,7 +57,7 @@ export function ServicesPage() {
                             Sourcing and follow-through.
                         </h1>
                         <p className="mt-3 max-w-[36rem] text-sm leading-6 text-slate-600 sm:text-[0.98rem] sm:leading-7">
-                            Direct sourcing and support for selected automobile, yacht and business inquiries.
+                            Direct sourcing and support for selected automobile, yacht, business and fitness inquiries.
                         </p>
                         <div className="mt-5">
                             <NavLink
@@ -66,7 +75,7 @@ export function ServicesPage() {
             <section className="pb-8 pt-5 sm:pb-12 sm:pt-6">
                 <div className="mx-auto w-[min(1120px,calc(100%-1rem))] sm:w-[min(1120px,calc(100%-1.5rem))]">
                     <div className="grid gap-4 lg:grid-cols-12">
-                        {serviceCards.map(({ title, description, Icon, className }) => (
+                        {serviceCards.map(({ title, description, Icon, className, to }) => (
                             <article
                                 key={title}
                                 className={[
@@ -84,21 +93,34 @@ export function ServicesPage() {
                                     {description}
                                 </p>
                                 {title === "Swimming Coaching and Fitness Training" ? (
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {[
-                                            "Competitive swimming: $250/hr",
-                                            "Beginner swimming: $350 for 5 sessions",
-                                            "Model personal training: $200/hr",
-                                            "Regular personal training: $90/hr"
-                                        ].map((rate) => (
-                                            <span
-                                                key={rate}
-                                                className="rounded-full border border-stone-200 bg-white/80 px-3 py-1.5 text-[12px] font-medium text-slate-700"
-                                            >
-                                                {rate}
-                                            </span>
-                                        ))}
-                                    </div>
+                                    <>
+                                        <div className="mt-4 flex flex-wrap gap-2">
+                                            {[
+                                                "Competitive swimming: $250/hr",
+                                                "Beginner swimming: $350 for 5 sessions",
+                                                "Model personal training: $200/hr",
+                                                "Regular personal training: $90/hr"
+                                            ].map((rate) => (
+                                                <span
+                                                    key={rate}
+                                                    className="rounded-full border border-stone-200 bg-white/80 px-3 py-1.5 text-[12px] font-medium text-slate-700"
+                                                >
+                                                    {rate}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        {to ? (
+                                            <div className="mt-5">
+                                                <NavLink
+                                                    to={to}
+                                                    className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-950 hover:bg-stone-50"
+                                                >
+                                                    View Fitness Page
+                                                    <ArrowUpRightIcon className="h-4 w-4" />
+                                                </NavLink>
+                                            </div>
+                                        ) : null}
+                                    </>
                                 ) : null}
                             </article>
                         ))}
