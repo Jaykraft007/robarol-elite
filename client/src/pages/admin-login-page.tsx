@@ -90,9 +90,7 @@ export function AdminLoginPage() {
                             {isSubmitting ? "Signing in..." : "Sign in"}
                         </button>
                     </form>
-                    <p className="mt-5 text-sm text-slate-600">
-                        Admin access is provisioned directly in Supabase.
-                    </p>
+                    
                 </div>
             </div>
         </div>

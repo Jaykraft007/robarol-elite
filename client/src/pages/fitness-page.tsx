@@ -98,7 +98,7 @@ export function FitnessPage() {
                     <div className="grid gap-3 sm:grid-cols-[1.08fr_0.92fr]">
                         <article className="group relative min-h-[24rem] overflow-hidden rounded-[1.55rem] border border-stone-900/80 bg-black shadow-[0_18px_40px_rgba(15,23,42,0.16)] sm:min-h-[31rem]">
                             <img
-                                src="/assets/fitness-1.png"
+                                src="/assets/fitness-2.png"
                                 alt="Bodycraft Fitness owner in a brand portrait"
                                 className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
                             />
@@ -107,34 +107,34 @@ export function FitnessPage() {
                                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/62">
                                     Brand Owner
                                 </p>
-                                <h2 className="font-hero-display mt-2 max-w-[15ch] text-[1.38rem] leading-[1.04] text-white sm:text-[1.75rem]">
+                                {/* <h2 className="font-hero-display mt-2 max-w-[15ch] text-[1.38rem] leading-[1.04] text-white sm:text-[1.75rem]">
                                     Fitness training led by the face of the brand.
                                 </h2>
                                 <p className="mt-3 max-w-[28rem] text-sm leading-6 text-white/78">
                                     Clients can see the trainer behind Bodycraft Fitness and inquire directly for private sessions.
-                                </p>
-                                <div className="mt-4 flex flex-wrap gap-2">
+                                </p> */}
+                                {/* <div className="mt-4 flex flex-wrap gap-2">
                                     <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-medium text-white/82">
                                         1-to-1 coaching
                                     </span>
                                     <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-medium text-white/82">
                                         Bodycraft Fitness
                                     </span>
-                                </div>
+                                </div> */}
                             </div>
                         </article>
 
                         <div className="grid gap-3">
                             <article className="group relative min-h-[11.6rem] overflow-hidden rounded-[1.45rem] border border-stone-900/80 bg-black shadow-[0_14px_34px_rgba(15,23,42,0.14)]">
                                 <img
-                                    src="/assets/fitness-2.png"
+                                    src="/assets/fitness-1.png"
                                     alt="Bodycraft Fitness owner during a studio shoot"
                                     className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
                                 />
                                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,4,5,0.08),rgba(4,4,5,0.62)_58%,rgba(4,4,5,0.84))]" />
                                 <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
                                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/62">
-                                        Fitness First
+                                        Bodycraft Fitness PTE Ltd
                                     </p>
                                     <p className="mt-2 text-base font-semibold text-white">
                                         Model personal training
